@@ -1,0 +1,43 @@
+name: Report an error
+description: Report a wrong value, broken reference, or unclear wording in a table.
+title: "Error in: "
+labels: ["error-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping keep these tables accurate. **Do not include any patient information.**
+  - type: input
+    id: table
+    attributes:
+      label: Table
+      description: The table's page URL or title.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+      description: Quote the row, column, footnote, or reference, and say what it shows now.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What should it say?
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: A citation supporting the correction (PMID, DOI, guideline name and year, or URL), with the page or table number if possible.
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: This report contains no patient information.
+          required: true

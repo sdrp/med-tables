@@ -1,0 +1,63 @@
+name: Propose a new table
+description: Suggest a clinical reference table to add.
+title: "New table: "
+labels: ["new-table"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        See [CONTRIBUTING.md](https://github.com/sdrp/med-tables/blob/main/CONTRIBUTING.md) for what a table needs. **Do not include any patient information.**
+  - type: input
+    id: title
+    attributes:
+      label: Table title
+      placeholder: e.g. Opioid equianalgesic doses
+    validations:
+      required: true
+  - type: input
+    id: category
+    attributes:
+      label: Category
+      placeholder: e.g. Cardiology, Resuscitation, Endocrinology
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Why is it useful?
+      description: Who would use it, and when.
+    validations:
+      required: true
+  - type: textarea
+    id: content
+    attributes:
+      label: Proposed content
+      description: Columns and rows, as a list, Markdown table, or pasted spreadsheet. Note which source each value comes from.
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Primary sources for every value. Include PMID or DOI where available, or the guideline name, year, and URL.
+    validations:
+      required: true
+  - type: textarea
+    id: caveats
+    attributes:
+      label: Caveats
+      description: Known variability, populations where the values do not apply, or disagreements between sources.
+  - type: input
+    id: credentials
+    attributes:
+      label: Your clinical background (optional)
+      description: Helps the reviewer, but is not required to propose a table.
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: This proposal contains no patient information.
+          required: true
+        - label: I agree that the content can be published under CC BY 4.0.
+          required: true
