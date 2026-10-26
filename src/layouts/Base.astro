@@ -23,9 +23,13 @@ const isProd = import.meta.env.PROD;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#e4f5fc" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#15181d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#eef2f4" />
+    <script is:inline>
+      // Light is the default. Dark mode is opt-in via the header toggle and remembered.
+      try {
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+      } catch {}
+    </script>
     <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
     <link rel="apple-touch-icon" href={withBase('icons/apple-touch-icon.png')} />
     <link rel="manifest" href={withBase('manifest.webmanifest')} />
@@ -39,6 +43,7 @@ const isProd = import.meta.env.PROD;
         <nav aria-label="Main">
           <a href={withBase()}>Tables</a>
           <a href={withBase('about/')}>About</a>
+          <button class="theme-toggle" type="button" aria-pressed="false" hidden>Dark mode</button>
         </nav>
       </div>
     </header>
@@ -57,6 +62,30 @@ const isProd = import.meta.env.PROD;
         </p>
       </div>
     </footer>
+    <script is:inline>
+      (() => {
+        const button = document.querySelector('.theme-toggle');
+        const root = document.documentElement;
+        const meta = document.querySelector('meta[name="theme-color"]');
+        const render = () => {
+          const dark = root.dataset.theme === 'dark';
+          button.setAttribute('aria-pressed', String(dark));
+          button.textContent = dark ? 'Light mode' : 'Dark mode';
+          meta.content = dark ? '#1a1d22' : '#eef2f4';
+        };
+        button.addEventListener('click', () => {
+          const dark = root.dataset.theme !== 'dark';
+          if (dark) root.dataset.theme = 'dark';
+          else delete root.dataset.theme;
+          try {
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
+          } catch {}
+          render();
+        });
+        button.hidden = false;
+        render();
+      })();
+    </script>
     {
       isProd && (
         <script is:inline define:vars={{ swUrl, scope }}>

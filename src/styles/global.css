@@ -2,70 +2,75 @@
    Look: pastel fills, white cards, firm ink outlines, hard offset shadows. */
 
 :root {
-  /* Pastels */
-  --sky: #8fdcf5;
-  --sky-soft: #e4f5fc;
-  --pink: #f4b6d4;
-  --pink-soft: #fde9f2;
-  --yellow: #f8f1a0;
-  --yellow-soft: #fdfbe1;
+  /* Muted pastels */
+  --blue: #9fbccb;
+  --blue-soft: #eef2f4;
+  --rose: #d4a5b5;
+  --rose-soft: #f5e9ed;
+  --sand: #dcc88e;
+  --sand-soft: #f6f0dc;
+  --sage: #adc3a4;
+  --chip-text: #1d2228; /* text on a pastel fill, in either theme */
 
   /* Roles */
-  --bg: var(--sky-soft);
+  --bg: var(--blue-soft);
   --surface: #ffffff;
-  --text: #14161a;
-  --muted: #3d4650;
-  --ink: #14161a; /* outlines and shadows */
-  --rule: #c9d3dc; /* thin lines inside tables */
-  --zebra: #f3fafd;
-  --head: var(--pink);
-  --head-text: #14161a;
-  --accent: #1f4fc4;
-  --accent-hover: #163a94;
-  --focus: #14161a;
-  --banner-bg: var(--yellow);
-  --banner-text: #14161a;
-  --caveat-bg: var(--pink-soft);
-  --tag-bg: var(--yellow);
-  --tag-text: #14161a;
-  --target: var(--yellow);
+  --text: #1d2228;
+  --muted: #4a535d;
+  --ink: #2b3138; /* outlines and shadows */
+  --rule: #d3dade; /* thin lines inside tables */
+  --zebra: #f5f7f8;
+  --head: var(--rose);
+  --head-text: #1d2228;
+  --accent: #2d5a87;
+  --accent-hover: #1f4163;
+  --focus: #2b3138;
+  --banner-bg: var(--sand);
+  --banner-text: #1d2228;
+  --caveat-bg: var(--rose-soft);
+  --tag-bg: var(--sand);
+  --tag-text: #1d2228;
+  --target: var(--sand-soft);
+  --highlight: var(--sand);
   --shadow: var(--ink);
 
   --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --display: ui-rounded, 'SF Pro Rounded', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --line: 2px;
-  --radius: 14px;
+  --radius: 12px;
   --radius-sm: 8px;
-  --lift: 4px;
+  --lift: 3px;
   --measure: 46rem;
   --page: 72rem;
 
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #15181d;
-    --surface: #1e232a;
-    --text: #eef1f4;
-    --muted: #b3bcc6;
-    --ink: #d9dee4;
-    --rule: #3a424c;
-    --zebra: #232930;
-    --head: #4a2f3e;
-    --head-text: #fde9f2;
-    --accent: #8fdcf5;
-    --accent-hover: #c4ecfa;
-    --focus: #f8f1a0;
-    --banner-bg: #3d3916;
-    --banner-text: #f8f1a0;
-    --caveat-bg: #352531;
-    --tag-bg: #3d3916;
-    --tag-text: #f8f1a0;
-    --target: #3d3916;
-    --shadow: #2e7d96;
-  }
+/* Dark mode is opt-in (header toggle sets data-theme on <html>). */
+:root[data-theme='dark'] {
+  --bg: #1a1d22;
+  --surface: #22262c;
+  --text: #e9ecef;
+  --muted: #aeb6bf;
+  --ink: #8a949e;
+  --rule: #363c44;
+  --zebra: #272c33;
+  --head: #4a3540;
+  --head-text: #f3e3e9;
+  --accent: #9fc3dc;
+  --accent-hover: #c7dcea;
+  --focus: #dcc88e;
+  --banner-bg: #3b3524;
+  --banner-text: #ecdcae;
+  --caveat-bg: #33272d;
+  --tag-bg: #3b3524;
+  --tag-text: #ecdcae;
+  --target: #3b3524;
+  --highlight: #5a4f2c;
+  --shadow: #0e1013;
+
+  color-scheme: dark;
 }
 
 /* Base */
@@ -140,10 +145,10 @@ code {
   position: absolute;
   left: 0.5rem;
   top: -3rem;
-  background: var(--yellow);
-  color: #14161a;
+  background: var(--sand);
+  color: var(--chip-text);
   padding: 0.5rem 0.75rem;
-  border: var(--line) solid #14161a;
+  border: var(--line) solid var(--chip-text);
   border-radius: var(--radius-sm);
   font-weight: 700;
   z-index: 10;
@@ -185,12 +190,13 @@ code {
   height: 1.1rem;
   border: var(--line) solid var(--ink);
   border-radius: 5px;
-  background: linear-gradient(var(--pink) 0 40%, var(--sky) 40%);
+  background: linear-gradient(var(--rose) 0 40%, var(--blue) 40%);
 }
 
 .site-header nav {
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .site-header nav a {
@@ -251,15 +257,10 @@ main {
 }
 
 .intro h1 .hl {
-  background: linear-gradient(transparent 58%, var(--yellow) 58% 92%, transparent 92%);
+  background: linear-gradient(transparent 58%, var(--highlight) 58% 92%, transparent 92%);
   padding: 0 0.1em;
 }
 
-@media (prefers-color-scheme: dark) {
-  .intro h1 .hl {
-    background: linear-gradient(transparent 58%, #5a5420 58% 92%, transparent 92%);
-  }
-}
 
 .intro p {
   max-width: var(--measure);
@@ -274,9 +275,9 @@ main {
   --pagefind-ui-text: var(--text);
   --pagefind-ui-background: var(--surface);
   --pagefind-ui-border: var(--ink);
-  --pagefind-ui-tag: var(--yellow-soft);
+  --pagefind-ui-tag: var(--sand-soft);
   --pagefind-ui-border-width: 2px;
-  --pagefind-ui-border-radius: 14px;
+  --pagefind-ui-border-radius: 12px;
   --pagefind-ui-font: var(--font);
   --pagefind-ui-scale: 0.9;
 }
@@ -302,8 +303,8 @@ main {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #14161a;
-  background: var(--pink);
+  color: var(--chip-text);
+  background: var(--rose);
   border: var(--line) solid var(--ink);
   border-radius: 999px;
   padding: 0.15rem 0.75rem;
@@ -311,11 +312,11 @@ main {
 }
 
 .category:nth-of-type(3n + 2) h2 {
-  background: var(--sky);
+  background: var(--blue);
 }
 
 .category:nth-of-type(3n) h2 {
-  background: var(--yellow);
+  background: var(--sage);
 }
 
 .cards {
@@ -579,18 +580,18 @@ main {
   height: 1.6rem;
   font-size: 0.8rem;
   font-weight: 700;
-  color: #14161a;
+  color: var(--chip-text);
   border: var(--line) solid var(--ink);
   border-radius: 999px;
   font-variant-numeric: tabular-nums;
 }
 
 .fn-label {
-  background: var(--pink);
+  background: var(--rose);
 }
 
 .ref-number {
-  background: var(--sky);
+  background: var(--blue);
 }
 
 .fn-refs a {
@@ -662,7 +663,8 @@ main {
 /* Print: black on white, no chrome or shadows, keep footnotes and references. */
 
 @media print {
-  :root {
+  :root,
+  :root[data-theme='dark'] {
     --bg: #fff;
     --surface: #fff;
     --text: #000;
@@ -676,8 +678,11 @@ main {
     --banner-bg: #fff;
     --banner-text: #000;
     --caveat-bg: #fff;
-    --pink: #fff;
-    --sky: #fff;
+    --rose: #fff;
+    --sand: #fff;
+    --sage: #fff;
+    --highlight: transparent;
+    --blue: #fff;
     --shadow: transparent;
   }
 
@@ -751,5 +756,29 @@ main {
 
   h2 {
     break-after: avoid;
+  }
+}
+
+/* Theme toggle */
+
+.theme-toggle {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface);
+  border: var(--line) solid var(--ink);
+  border-radius: 999px;
+  padding: 0.2rem 0.75rem;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--bg);
+}
+
+@media print {
+  .theme-toggle {
+    display: none;
   }
 }
