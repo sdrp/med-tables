@@ -1,0 +1,189 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import NoteMarks from '../../components/NoteMarks.astro';
+import { prepareTable, formatDate, isoDate } from '../../lib/table';
+import { absoluteUrl, reportErrorUrl, withBase } from '../../lib/site';
+
+export const getStaticPaths = (async () => {
+  const tables = await getCollection('tables');
+  return tables.map((entry) => {
+    if (entry.data.slug !== entry.id) {
+      throw new Error(`Table file "${entry.id}.yaml" has slug "${entry.data.slug}". The slug must match the file name.`);
+    }
+    return { params: { slug: entry.data.slug }, props: { entry } };
+  });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  entry: CollectionEntry<'tables'>;
+}
+
+const t = Astro.props.entry.data;
+const { rows, footnotes, references, wideColumns } = prepareTable(t);
+const pageUrl = absoluteUrl(`tables/${t.slug}/`);
+const reviewed = t.last_reviewed ? formatDate(t.last_reviewed) : 'Not yet reviewed';
+---
+
+<Base title={t.title} description={t.summary}>
+  <article class="table-page" data-pagefind-body>
+    <p class="crumbs" data-pagefind-ignore>
+      <a href={withBase()}>Tables</a> / <span data-pagefind-meta="category">{t.category}</span>
+    </p>
+    <h1 data-pagefind-meta="title">{t.title}</h1>
+    <p class="summary">{t.summary}</p>
+
+    <dl class="review-meta">
+      <div>
+        <dt>Last reviewed</dt>
+        <dd>{t.last_reviewed ? <time datetime={isoDate(t.last_reviewed)}>{reviewed}</time> : reviewed}</dd>
+      </div>
+      <div>
+        <dt>Reviewed by</dt>
+        <dd>{t.reviewed_by}</dd>
+      </div>
+    </dl>
+
+    {
+      t.status === 'draft' && (
+        <p class="draft-banner" role="note">
+          <strong>Draft:</strong> pending clinician review.
+        </p>
+      )
+    }
+
+    <div class="table-wrap" tabindex="0" role="region" aria-labelledby="table-caption">
+      <table class="data-table">
+        <caption id="table-caption" data-pagefind-ignore>{t.title}</caption>
+        <thead>
+          <tr>
+            {
+              t.columns.map((col, i) => (
+                <th scope="col" class:list={{ wide: wideColumns[i] }}>
+                  {col.label}
+                  {col.unit && <span class="unit"> ({col.unit})</span>}
+                </th>
+              ))
+            }
+          </tr>
+        </thead>
+        <tbody>
+          {
+            rows.map((row) => (
+              <tr>
+                {row.cells.map((cell, i) =>
+                  i === 0 ? (
+                    <th scope="row" class:list={{ wide: wideColumns[i] }}>
+                      {cell.text}
+                      <NoteMarks notes={[...cell.notes, ...row.notes]} />
+                    </th>
+                  ) : (
+                    <td class:list={{ wide: wideColumns[i] }}>
+                      {cell.text}
+                      <NoteMarks notes={cell.notes} />
+                    </td>
+                  ),
+                )}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    {
+      footnotes.length > 0 && (
+        <section aria-labelledby="footnotes-heading">
+          <h2 id="footnotes-heading">Footnotes</h2>
+          <ol class="footnotes">
+            {footnotes.map((f) => (
+              <li id={`fn-${f.id}`}>
+                <span class="fn-label">{f.label}</span>
+                <div>
+                  {f.text}
+                  {f.refs.length > 0 && (
+                    <span class="fn-refs">
+                      {' '}
+                      [
+                      {f.refs.map((r, i) => (
+                        <>
+                          {i > 0 && ', '}
+                          <a href={`#ref-${r.id}`} aria-label={`Reference ${r.number}`}>
+                            {r.number}
+                          </a>
+                        </>
+                      ))}
+                      ]
+                    </span>
+                  )}
+                  <span class="backrefs" data-pagefind-ignore>
+                    {f.backrefs.map((anchor, i) => (
+                      <a
+                        href={`#${anchor}`}
+                        aria-label={
+                          f.backrefs.length > 1
+                            ? `Back to footnote ${f.label} marker ${i + 1}`
+                            : `Back to footnote ${f.label} in table`
+                        }
+                      >
+                        ↩{f.backrefs.length > 1 && <sup>{i + 1}</sup>}
+                      </a>
+                    ))}
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )
+    }
+
+    {
+      t.caveats.length > 0 && (
+        <aside class="caveats" aria-labelledby="caveats-heading">
+          <h2 id="caveats-heading">Caveats</h2>
+          <ul>
+            {t.caveats.map((c) => (
+              <li>{c}</li>
+            ))}
+          </ul>
+        </aside>
+      )
+    }
+
+    <section aria-labelledby="references-heading">
+      <h2 id="references-heading">References</h2>
+      <ol class="references">
+        {
+          references.map((r) => (
+            <li id={`ref-${r.id}`}>
+              <span class="ref-number">{r.number}.</span>
+              <div>
+                <p class="citation">{r.citation}</p>
+                {r.links.length > 0 && (
+                  <ul class="ref-links">
+                    {r.links.map((l) => (
+                      <li>
+                        <span class="ref-link-label">{l.label}:</span> <a href={l.href}>{l.value}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <p class="report" data-pagefind-ignore>
+      Spotted a mistake? <a href={reportErrorUrl(t.title, t.slug)}>Report an error</a> (opens a GitHub issue).
+    </p>
+
+    <p class="print-meta" data-pagefind-ignore>
+      Printed from {pageUrl}. Last reviewed: {reviewed}. Reviewed by: {t.reviewed_by}.
+      {t.status === 'draft' && ' Draft: pending clinician review.'}
+    </p>
+  </article>
+</Base>

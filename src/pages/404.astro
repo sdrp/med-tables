@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/site';
+---
+
+<Base title="Page not found">
+  <article class="prose">
+    <h1>Page not found</h1>
+    <p>That page does not exist. <a href={withBase()}>See all tables</a>.</p>
+  </article>
+</Base>

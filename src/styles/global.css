@@ -1,0 +1,618 @@
+/* Med Tables: one stylesheet, plain CSS, every color a custom property. */
+
+:root {
+  --bg: #fbfbfa;
+  --surface: #ffffff;
+  --text: #1a1d21;
+  --muted: #4a525c;
+  --border: #d3d8de;
+  --zebra: #f1f3f5;
+  --head: #e8ecef;
+  --accent: #0b5f73;
+  --accent-hover: #08485a;
+  --focus: #0b5f73;
+  --banner-bg: #fff6df;
+  --banner-border: #c99400;
+  --banner-text: #4a3500;
+  --caveat-bg: #eef5f7;
+  --caveat-border: #0b5f73;
+  --tag-bg: #fff1c7;
+  --tag-text: #5c4300;
+
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --radius: 6px;
+  --measure: 46rem;
+  --page: 72rem;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121417;
+    --surface: #181b1f;
+    --text: #e8eaed;
+    --muted: #a9b1bb;
+    --border: #353b43;
+    --zebra: #22272d;
+    --head: #262b31;
+    --accent: #72c7d9;
+    --accent-hover: #a3dde9;
+    --focus: #72c7d9;
+    --banner-bg: #2c2410;
+    --banner-border: #b48a1c;
+    --banner-text: #f3dc96;
+    --caveat-bg: #16252a;
+    --caveat-border: #72c7d9;
+    --tag-bg: #3a2f10;
+    --tag-text: #f3dc96;
+  }
+}
+
+/* Base */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  font-weight: 650;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2rem);
+  margin: 1.5rem 0 0.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 2rem 0 0.75rem;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+}
+
+.container {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -3rem;
+  background: var(--surface);
+  color: var(--accent);
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  z-index: 10;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+/* Header and footer */
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.25rem;
+}
+
+.site-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.site-header nav a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.5rem 0;
+}
+
+.site-header nav a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+main {
+  padding-bottom: 3rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 1.25rem 0 2rem;
+}
+
+.site-footer p {
+  margin: 0.4rem 0;
+  max-width: var(--measure);
+}
+
+/* Home */
+
+.intro p {
+  max-width: var(--measure);
+  color: var(--muted);
+  margin-top: 0;
+}
+
+.search {
+  margin: 1.5rem 0 0.5rem;
+  max-width: var(--measure);
+  --pagefind-ui-primary: var(--accent);
+  --pagefind-ui-text: var(--text);
+  --pagefind-ui-background: var(--surface);
+  --pagefind-ui-border: var(--border);
+  --pagefind-ui-tag: var(--zebra);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: var(--radius);
+  --pagefind-ui-font: var(--font);
+  --pagefind-ui-scale: 0.9;
+}
+
+.search input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.search-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.category h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-top: 2rem;
+}
+
+.cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: 0.75rem;
+}
+
+.card a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  height: 100%;
+  padding: 0.9rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.card a:hover {
+  border-color: var(--accent);
+}
+
+.card-title {
+  font-weight: 650;
+  color: var(--accent);
+}
+
+.card-summary {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.tag {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+}
+
+/* Table page */
+
+.crumbs {
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.crumbs + h1 {
+  margin-top: 0.25rem;
+}
+
+.summary {
+  max-width: var(--measure);
+  margin: 0 0 0.75rem;
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.review-meta div {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.review-meta dt::after {
+  content: ':';
+}
+
+.review-meta dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.draft-banner {
+  max-width: var(--measure);
+  margin: 0 0 1.25rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--banner-bg);
+  color: var(--banner-text);
+  border-left: 4px solid var(--banner-border);
+  border-radius: var(--radius);
+}
+
+/* The table scrolls inside its own box, never the page. A max height keeps the
+   sticky header working, since the box is the scroll container. */
+.table-wrap {
+  overflow: auto;
+  max-height: calc(100dvh - 2rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overscroll-behavior-x: contain;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.data-table caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.data-table .wide {
+  min-width: 13rem;
+}
+
+.data-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--head);
+  font-weight: 650;
+  font-size: 0.85rem;
+  vertical-align: bottom;
+  border-bottom: 2px solid var(--border);
+}
+
+.data-table .unit {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.data-table tbody th {
+  font-weight: 600;
+}
+
+.data-table tbody tr:nth-child(even) > * {
+  background: var(--zebra);
+}
+
+.data-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.note-marks {
+  font-size: 0.72em;
+  line-height: 0;
+  margin-left: 0.1em;
+  white-space: nowrap;
+}
+
+.note-marks a {
+  padding: 0 0.1em;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.note-marks a:hover {
+  text-decoration: underline;
+}
+
+:target {
+  scroll-margin-top: 4rem;
+}
+
+.footnotes li:target,
+.references li:target,
+.note-marks a:target {
+  background: var(--banner-bg);
+  border-radius: 3px;
+}
+
+/* First column stays visible when the table scrolls sideways on small screens. */
+@media (max-width: 48rem) {
+  .data-table tbody th,
+  .data-table thead th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    max-width: 42vw;
+    min-width: 7rem;
+    box-shadow: 1px 0 0 var(--border);
+  }
+
+  .data-table thead th:first-child {
+    z-index: 3;
+  }
+
+  .data-table .wide {
+    min-width: 11rem;
+  }
+}
+
+.footnotes,
+.references {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: var(--measure);
+}
+
+.footnotes li,
+.references > li {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  gap: 0.25rem;
+  padding: 0.3rem 0.25rem;
+}
+
+.fn-label,
+.ref-number {
+  font-weight: 650;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.fn-refs a {
+  font-variant-numeric: tabular-nums;
+}
+
+.backrefs a {
+  margin-left: 0.35rem;
+  text-decoration: none;
+}
+
+.caveats {
+  max-width: var(--measure);
+  margin: 2rem 0 0;
+  padding: 0.25rem 1rem 0.5rem;
+  background: var(--caveat-bg);
+  border-left: 4px solid var(--caveat-border);
+  border-radius: var(--radius);
+}
+
+.caveats h2 {
+  margin-top: 0.75rem;
+}
+
+.caveats ul {
+  padding-left: 1.2rem;
+}
+
+.caveats li + li {
+  margin-top: 0.4rem;
+}
+
+.citation {
+  margin: 0;
+}
+
+.ref-links {
+  list-style: none;
+  padding: 0;
+  margin: 0.2rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 1rem;
+  font-size: 0.9rem;
+}
+
+.ref-link-label {
+  color: var(--muted);
+}
+
+.report {
+  margin-top: 2.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.print-meta {
+  display: none;
+}
+
+/* Prose pages */
+
+.prose {
+  max-width: var(--measure);
+}
+
+.prose li + li {
+  margin-top: 0.4rem;
+}
+
+/* Print: black on white, no chrome, keep footnotes and references. */
+
+@media print {
+  :root {
+    --bg: #fff;
+    --surface: #fff;
+    --text: #000;
+    --muted: #000;
+    --border: #999;
+    --zebra: #f2f2f2;
+    --head: #e6e6e6;
+    --accent: #000;
+    --banner-bg: #fff;
+    --banner-border: #000;
+    --banner-text: #000;
+    --caveat-bg: #fff;
+    --caveat-border: #000;
+  }
+
+  body {
+    font-size: 10.5pt;
+    line-height: 1.4;
+  }
+
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .search,
+  .search-note,
+  .report,
+  .backrefs,
+  .crumbs {
+    display: none !important;
+  }
+
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .table-wrap {
+    overflow: visible;
+    max-height: none;
+    border: 0;
+  }
+
+  .data-table th,
+  .data-table td {
+    position: static !important;
+    box-shadow: none !important;
+    max-width: none !important;
+  }
+
+  .data-table tr {
+    break-inside: avoid;
+  }
+
+  .data-table thead {
+    display: table-header-group;
+  }
+
+  .data-table th,
+  .data-table td {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .print-meta {
+    display: block;
+    margin-top: 1.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #000;
+    font-size: 9pt;
+  }
+
+  h2 {
+    break-after: avoid;
+  }
+}

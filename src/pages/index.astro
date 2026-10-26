@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/site';
+
+const tables = await getCollection('tables');
+const byCategory = new Map<string, typeof tables>();
+for (const t of tables.toSorted((a, b) => a.data.title.localeCompare(b.data.title))) {
+  const list = byCategory.get(t.data.category) ?? [];
+  list.push(t);
+  byCategory.set(t.data.category, list);
+}
+const categories = [...byCategory.keys()].sort((a, b) => a.localeCompare(b));
+const pagefindBase = withBase('pagefind/');
+const baseUrl = withBase();
+---
+
+<Base>
+  <Fragment slot="head">
+    <link rel="stylesheet" href={withBase('pagefind/pagefind-ui.css')} />
+  </Fragment>
+
+  <section class="intro">
+    <h1>Clinical reference tables</h1>
+    <p>
+      Conversion and reference tables for clinicians, each with footnotes, caveats, and cited sources. Check every
+      value against the references and your local protocols.
+    </p>
+  </section>
+
+  <div id="search" class="search" role="search"></div>
+  <p id="search-unavailable" class="search-note" hidden>Search is available in the built site (run <code>npm run build</code>).</p>
+  <noscript><p class="search-note">Search needs JavaScript. All tables are listed below.</p></noscript>
+
+  {
+    categories.map((category) => (
+      <section class="category" aria-labelledby={`cat-${category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
+        <h2 id={`cat-${category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>{category}</h2>
+        <ul class="cards">
+          {byCategory.get(category)!.map((t) => (
+            <li class="card">
+              <a href={withBase(`tables/${t.data.slug}/`)}>
+                <span class="card-title">{t.data.title}</span>
+                <span class="card-summary">{t.data.summary}</span>
+                {t.data.status === 'draft' && <span class="tag">Draft</span>}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+
+  <script is:inline define:vars={{ pagefindBase, baseUrl }}>
+    const s = document.createElement('script');
+    s.src = pagefindBase + 'pagefind-ui.js';
+    s.onload = () => {
+      new PagefindUI({
+        element: '#search',
+        bundlePath: pagefindBase,
+        baseUrl,
+        showImages: false,
+        showSubResults: true,
+        resetStyles: false,
+        translations: { placeholder: 'Search tables, drugs, causes' },
+      });
+    };
+    s.onerror = () => {
+      document.getElementById('search-unavailable').hidden = false;
+    };
+    document.head.appendChild(s);
+  </script>
+</Base>

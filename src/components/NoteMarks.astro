@@ -1,0 +1,24 @@
+---
+import type { NoteMark } from '../lib/table';
+
+interface Props {
+  notes: NoteMark[];
+}
+
+const { notes } = Astro.props;
+---
+
+{
+  notes.length > 0 && (
+    <sup class="note-marks">
+      {notes.map((n, i) => (
+        <>
+          {i > 0 && ','}
+          <a id={n.anchor} href={`#fn-${n.id}`} aria-label={`Footnote ${n.label}`}>
+            {n.label}
+          </a>
+        </>
+      ))}
+    </sup>
+  )
+}

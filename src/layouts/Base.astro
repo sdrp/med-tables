@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+import { SITE_NAME, SITE_DESCRIPTION, REPO_URL, withBase } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = SITE_DESCRIPTION } = Astro.props;
+const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const swUrl = withBase('sw.js');
+const scope = withBase();
+const isProd = import.meta.env.PROD;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121417" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={withBase('icons/apple-touch-icon.png')} />
+    <link rel="manifest" href={withBase('manifest.webmanifest')} />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="site-name" href={withBase()}>{SITE_NAME}</a>
+        <nav aria-label="Main">
+          <a href={withBase()}>Tables</a>
+          <a href={withBase('about/')}>About</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="container">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          <strong>Educational reference only.</strong> Not a substitute for clinical judgment or institutional protocols.{' '}
+          <a href={withBase('disclaimer/')}>Read the disclaimer</a>.
+        </p>
+        <p>
+          <a href={REPO_URL}>Source on GitHub</a> · Code under MIT. Table content under{' '}
+          <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+        </p>
+      </div>
+    </footer>
+    {
+      isProd && (
+        <script is:inline define:vars={{ swUrl, scope }}>
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => navigator.serviceWorker.register(swUrl, { scope }));
+          }
+        </script>
+      )
+    }
+  </body>
+</html>
