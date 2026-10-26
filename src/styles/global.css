@@ -10,19 +10,19 @@
   --on-accent: #f7f1e3; /* text and icons on a deep accent */
 
   /* Roles */
-  --bg: #e6dac0;
-  --surface: #f7f1e3;
+  --bg: #f4efe5;
+  --surface: #fcfaf5;
   --text: #231f1a;
   --muted: #574e43;
   --ink: #3a3229; /* outlines */
-  --rule: #d5c8ad; /* thin lines inside tables */
-  --zebra: #f0e8d6;
+  --rule: #e3dac8; /* thin lines inside tables */
+  --zebra: #f6f1e7;
   --head: var(--navy);
   --head-text: var(--on-accent);
   --accent: #1f4470;
   --accent-hover: #142e4d;
   --focus: #1f4470;
-  --caveat-bg: #efe3c8;
+  --caveat-bg: #efe7d6;
   --caveat-border: var(--oxblood);
   --target: #f3e2b3;
 
