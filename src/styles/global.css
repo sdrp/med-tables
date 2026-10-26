@@ -157,11 +157,22 @@ code {
 }
 
 .site-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: 0.01em;
   color: var(--text);
   text-decoration: none;
+}
+
+.site-logo,
+.site-logo svg {
+  display: block;
+  width: 30px;
+  height: 30px;
+  flex: none;
 }
 
 .site-header nav {

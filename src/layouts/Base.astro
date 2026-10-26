@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import { SITE_NAME, SITE_DESCRIPTION, REPO_URL, withBase } from '../lib/site';
+// Inlined so the mark's currentColor follows the header text color.
+import logoMark from '../assets/logo-mark.svg?raw';
 
 interface Props {
   title?: string;
@@ -31,7 +33,7 @@ const isProd = import.meta.env.PROD;
       } catch {}
     </script>
     <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
-    <link rel="apple-touch-icon" href={withBase('icons/apple-touch-icon.png')} />
+    <link rel="apple-touch-icon" href={withBase('apple-touch-icon.png')} />
     <link rel="manifest" href={withBase('manifest.webmanifest')} />
     <slot name="head" />
   </head>
@@ -39,7 +41,10 @@ const isProd = import.meta.env.PROD;
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="site-name" href={withBase()}>{SITE_NAME}</a>
+        <a class="site-name" href={withBase()} aria-label={`${SITE_NAME}, home`}>
+          <span class="site-logo" set:html={logoMark} />
+          {SITE_NAME}
+        </a>
         <nav aria-label="Main">
           <a href={withBase()}>Tables</a>
           <a href={withBase('about/')}>About</a>
