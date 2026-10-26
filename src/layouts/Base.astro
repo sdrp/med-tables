@@ -25,7 +25,7 @@ const isProd = import.meta.env.PROD;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#f4efe5" />
+    <meta name="theme-color" content="#ffffff" />
     <script is:inline>
       // Light is the default. Dark mode is opt-in via the header toggle and remembered.
       try {
@@ -76,7 +76,7 @@ const isProd = import.meta.env.PROD;
           const dark = root.dataset.theme === 'dark';
           button.setAttribute('aria-pressed', String(dark));
           button.textContent = dark ? 'Light mode' : 'Dark mode';
-          meta.content = dark ? '#1c1915' : '#f4efe5';
+          meta.content = dark ? '#1c1915' : '#ffffff';
         };
         button.addEventListener('click', () => {
           const dark = root.dataset.theme !== 'dark';
