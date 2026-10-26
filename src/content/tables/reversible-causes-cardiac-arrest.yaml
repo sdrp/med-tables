@@ -1,0 +1,72 @@
+title: Reversible causes of cardiac arrest (H's and T's)
+slug: reversible-causes-cardiac-arrest
+category: Resuscitation
+summary: The H's and T's to search for and treat during every cardiac arrest, as framed by AHA (US) and Resuscitation Council UK.
+status: draft
+reviewed_by: Pending
+columns:
+  - key: group
+    label: Group
+  - key: cause
+    label: Cause
+  - key: rcuk
+    label: Grouping in RCUK 4 H's and 4 T's
+rows:
+  - cells:
+      group: "H"
+      cause: "Hypoxia"
+      rcuk: "Hypoxia"
+  - cells:
+      group: "H"
+      cause: "Hypovolemia"
+      rcuk: "Hypovolaemia"
+  - cells:
+      group: "H"
+      cause: { text: "Hydrogen ion (acidosis)", notes: [a] }
+      rcuk: { text: "Not listed separately", notes: [a] }
+  - cells:
+      group: "H"
+      cause: "Hypo- or hyperkalemia (and other metabolic disturbances)"
+      rcuk: "Hypo/hyperkalaemia, metabolic"
+  - cells:
+      group: "H"
+      cause: { text: "Hypothermia", notes: [b] }
+      rcuk: "Hypo/hyperthermia"
+  - cells:
+      group: "T"
+      cause: "Tension pneumothorax"
+      rcuk: "Tension pneumothorax"
+  - cells:
+      group: "T"
+      cause: "Tamponade, cardiac"
+      rcuk: "Cardiac tamponade"
+  - cells:
+      group: "T"
+      cause: "Toxins"
+      rcuk: "Toxins"
+  - cells:
+      group: "T"
+      cause: "Thrombosis, pulmonary (pulmonary embolism)"
+      rcuk: "Thrombosis (coronary or pulmonary)"
+  - cells:
+      group: "T"
+      cause: "Thrombosis, coronary (acute coronary syndrome)"
+      rcuk: "Thrombosis (coronary or pulmonary)"
+footnotes:
+  - id: a
+    text: "Hydrogen ion appears in the traditional AHA ACLS H's and T's. The RCUK mnemonic folds metabolic causes into a single H. Reviewer: confirm the AHA list against the 2025 Adult ALS algorithm figure."
+    refs: [aha2025, rcuk2025]
+  - id: b
+    text: "RCUK lists hypo- and hyperthermia together."
+    refs: [rcuk2025]
+caveats:
+  - "Identify and treat reversible causes without delaying high-quality CPR or defibrillation."
+  - "AHA 2025: using point-of-care ultrasound during arrest to diagnose reversible causes is not well established (COR 2b, LOE C-LD). If used, minimize interruptions in compressions."
+references:
+  - id: aha2025
+    citation: "Wigginton JG, Agarwal S, Bartos JA, et al. Part 9: Adult advanced life support: 2025 American Heart Association Guidelines for Cardiopulmonary Resuscitation and Emergency Cardiovascular Care. Circulation. 2025;152(suppl 2):S538-S577."
+    pmid: "41122884"
+    doi: "10.1161/CIR.0000000000001376"
+  - id: rcuk2025
+    citation: "Resuscitation Council UK. Adult advanced life support guidelines. 2025 Resuscitation Guidelines. Published 27 October 2025."
+    url: "https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/adult-advanced-life-support-guidelines"

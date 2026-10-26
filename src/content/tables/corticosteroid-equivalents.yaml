@@ -1,0 +1,88 @@
+title: Systemic corticosteroid equivalents
+slug: corticosteroid-equivalents
+category: Endocrinology
+summary: Approximate equivalent doses, relative glucocorticoid and mineralocorticoid activity, and duration of action of systemic corticosteroids.
+status: draft
+reviewed_by: Pending
+columns:
+  - key: agent
+    label: Agent
+  - key: dose
+    label: Approximate equivalent dose
+    unit: mg
+  - key: gc
+    label: Relative glucocorticoid activity
+  - key: mc
+    label: Relative mineralocorticoid activity
+  - key: duration
+    label: Duration of action
+    unit: h
+rows:
+  - cells:
+      agent: "Hydrocortisone"
+      dose: { text: "20", notes: [a] }
+      gc: "1"
+      mc: "1"
+      duration: "8 to 12"
+  - cells:
+      agent: "Cortisone"
+      dose: "25"
+      gc: "0.8"
+      mc: "0.8"
+      duration: "8 to 12"
+  - cells:
+      agent: "Prednisone"
+      dose: "5"
+      gc: "4"
+      mc: "0.8"
+      duration: "12 to 36"
+  - cells:
+      agent: "Prednisolone"
+      dose: "5"
+      gc: "4"
+      mc: "0.8"
+      duration: "12 to 36"
+  - cells:
+      agent: "Methylprednisolone"
+      dose: "4"
+      gc: "5"
+      mc: "Minimal"
+      duration: "12 to 36"
+  - cells:
+      agent: "Triamcinolone"
+      dose: "4"
+      gc: "5"
+      mc: "0"
+      duration: "12 to 36"
+  - cells:
+      agent: "Dexamethasone"
+      dose: "0.75"
+      gc: "30"
+      mc: "Minimal"
+      duration: "36 to 72"
+  - cells:
+      agent: "Betamethasone"
+      dose: "0.6"
+      gc: "30"
+      mc: "Negligible"
+      duration: "36 to 72"
+  - cells:
+      agent: { text: "Fludrocortisone", notes: [b] }
+      dose: "Not applicable"
+      gc: "10 to 15"
+      mc: "125 to 150"
+      duration: "12 to 36"
+footnotes:
+  - id: a
+    text: "Equivalent doses are for oral or IV administration. Relative potency for intramuscular or intraocular use may vary considerably."
+    refs: [liu2013]
+  - id: b
+    text: "Used for mineralocorticoid replacement. Glucocorticoid doses with a mineralocorticoid effect roughly equal to fludrocortisone 0.1 mg: prednisone or prednisolone 50 mg, or hydrocortisone 20 mg."
+    refs: [liu2013]
+caveats:
+  - "Equivalences are approximate and based on anti-inflammatory potency. Duration of action, mineralocorticoid effect, and HPA axis suppression differ between agents."
+references:
+  - id: liu2013
+    citation: "Liu D, Ahmet A, Ward L, et al. A practical guide to the monitoring and management of the complications of systemic corticosteroid therapy. Allergy Asthma Clin Immunol. 2013;9(1):30. Table 3."
+    pmcid: "PMC3765115"
+    doi: "10.1186/1710-1492-9-30"

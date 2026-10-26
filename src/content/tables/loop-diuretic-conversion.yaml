@@ -1,0 +1,101 @@
+title: Loop diuretic conversion (furosemide, bumetanide, torsemide)
+slug: loop-diuretic-conversion
+category: Cardiology
+summary: Approximate equivalent doses and key pharmacology of the three common loop diuretics, IV and PO.
+status: draft
+reviewed_by: Pending
+columns:
+  - key: property
+    label: Property
+  - key: furosemide
+    label: Furosemide
+  - key: bumetanide
+    label: Bumetanide
+  - key: torsemide
+    label: Torsemide
+rows:
+  - cells:
+      property: { text: "Approximate equivalent IV dose", notes: [a] }
+      furosemide: "40 mg"
+      bumetanide: "1 mg"
+      torsemide: "20 mg"
+  - cells:
+      property: { text: "PO to IV conversion (approximate)", notes: [b] }
+      furosemide: "2:1"
+      bumetanide: "1:1"
+      torsemide: "1:1"
+  - cells:
+      property: { text: "Approximate equivalent PO dose", notes: [c] }
+      furosemide: "80 mg"
+      bumetanide: "1 mg"
+      torsemide: "20 mg"
+  - cells:
+      property: "Oral bioavailability"
+      furosemide: { text: "10 to 100% (average 50%)", notes: [d] }
+      bumetanide: "80 to 100%"
+      torsemide: "80 to 100%"
+  - cells:
+      property: "Onset, IV"
+      furosemide: "5 min"
+      bumetanide: "2 to 3 min"
+      torsemide: "10 min"
+  - cells:
+      property: "Onset, PO"
+      furosemide: "30 to 60 min"
+      bumetanide: "30 to 60 min"
+      torsemide: "30 to 60 min"
+  - cells:
+      property: "Absorption affected by food"
+      furosemide: "Yes"
+      bumetanide: "Yes"
+      torsemide: "No"
+  - cells:
+      property: "Half-life, normal"
+      furosemide: "1.5 to 2 h"
+      bumetanide: "1 h"
+      torsemide: "3 to 4 h"
+  - cells:
+      property: "Half-life, heart failure"
+      furosemide: "2.7 h"
+      bumetanide: "1.3 h"
+      torsemide: "6 h"
+  - cells:
+      property: "Average duration of effect"
+      furosemide: "6 to 8 h"
+      bumetanide: "4 to 6 h"
+      torsemide: "6 to 8 h"
+  - cells:
+      property: "Metabolism"
+      furosemide: "50% renal conjugation"
+      bumetanide: "50% hepatic"
+      torsemide: "80% hepatic"
+  - cells:
+      property: { text: "Maximum daily IV dose", notes: [e] }
+      furosemide: "600 mg"
+      bumetanide: "10 mg"
+      torsemide: "200 mg"
+footnotes:
+  - id: a
+    text: "Relative IV potency as listed in Felker et al., Table 1."
+    refs: [felker2020]
+  - id: b
+    text: "The 2:1 furosemide PO:IV ratio reflects its low and variable bioavailability. Felker et al. note there are few clinical data supporting a fixed conversion and recommend dosing by response."
+    refs: [felker2020]
+  - id: c
+    text: "Derived arithmetically from the IV equivalence and PO:IV ratios above. Other references cite different furosemide:torsemide ratios; see caveats."
+    refs: [felker2020]
+  - id: d
+    text: "Furosemide absorption is slow, variable, and influenced by food. Absorption may slow further during decompensated heart failure."
+    refs: [felker2020]
+  - id: e
+    text: "Dose escalation is generally limited by ototoxicity risk. Some centers use higher doses."
+    refs: [felker2020]
+caveats:
+  - "Conversions are approximate. Titrate to urine output, urine sodium, and clinical response."
+  - "The furosemide to bumetanide ratio (40:1 in normal kidney function) declines as kidney function worsens."
+  - "Equivalence ratios, especially for torsemide, vary across references. This table follows Felker et al. 2020, Table 1."
+references:
+  - id: felker2020
+    citation: "Felker GM, Ellison DH, Mullens W, Cox ZL, Testani JM. Diuretic therapy for patients with heart failure: JACC State-of-the-Art Review. J Am Coll Cardiol. 2020;75(10):1178-1195."
+    pmid: "32164892"
+    doi: "10.1016/j.jacc.2019.12.059"

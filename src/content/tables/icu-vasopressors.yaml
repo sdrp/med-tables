@@ -1,0 +1,99 @@
+title: ICU vasopressors and inotropes
+slug: icu-vasopressors
+category: Critical care
+summary: Common vasopressors and inotropes, the receptors they act on, what they do, where they fit in septic shock, and what to watch for.
+status: draft
+reviewed_by: Pending
+columns:
+  - key: agent
+    label: Agent
+  - key: receptors
+    label: Receptors
+  - key: effect
+    label: Main hemodynamic effect (the why)
+  - key: role
+    label: Where it fits (the how)
+  - key: watch
+    label: Watch for
+rows:
+  - cells:
+      agent: "Norepinephrine"
+      receptors: "Alpha-1 (predominant), beta-1"
+      effect: "Raises blood pressure and systemic vascular resistance"
+      role: { text: "First-line vasopressor in septic shock. Target MAP 65 mm Hg.", notes: [a, b] }
+      watch: "Peripheral ischemia; splanchnic and renal vasoconstriction"
+  - cells:
+      agent: "Vasopressin"
+      receptors: "V1a (vascular); V2 (renal water reabsorption)"
+      effect: "Non-adrenergic vasoconstriction"
+      role: { text: "Add to norepinephrine when MAP remains inadequate", notes: [c] }
+      watch: "Reduced mesenteric blood flow; hyponatremia; procoagulant effects"
+  - cells:
+      agent: "Epinephrine"
+      receptors: "Alpha-1, beta-1, beta-2"
+      effect: "Raises heart rate, cardiac output, and blood pressure"
+      role: { text: "Third-line vasopressor after norepinephrine plus vasopressin; or replace norepinephrine when cardiac dysfunction causes persistent hypoperfusion", notes: [d] }
+      watch: "Arrhythmias; reduced splanchnic flow; raises lactate, which complicates lactate-guided resuscitation"
+  - cells:
+      agent: "Phenylephrine"
+      receptors: "Alpha-1"
+      effect: "Raises blood pressure and systemic vascular resistance"
+      role: { text: "Not addressed in the seed sources", notes: [e] }
+      watch: "Not addressed in the seed sources"
+  - cells:
+      agent: "Dopamine"
+      receptors: "D1 at low dose; alpha-1 and beta-1, dose dependent"
+      effect: "Renal vasodilation at low dose; vasoconstriction at high dose"
+      role: { text: "Norepinephrine preferred over dopamine. Alternative only when norepinephrine is unavailable.", notes: [f] }
+      watch: "Dose-limiting arrhythmias; no proven renal benefit at low dose"
+  - cells:
+      agent: "Angiotensin II"
+      receptors: "AT1 (pressor), AT2"
+      effect: "Raises blood pressure via AT1"
+      role: { text: "Norepinephrine preferred over angiotensin II (very low quality evidence)", notes: [b] }
+      watch: "Not detailed in the seed sources; reviewer to add"
+  - cells:
+      agent: "Dobutamine"
+      receptors: "Beta-1"
+      effect: "Increases cardiac output; lowers systemic vascular resistance"
+      role: { text: "Add when cardiac dysfunction causes persistent hypoperfusion despite adequate volume and blood pressure", notes: [d] }
+      watch: "Not detailed in the seed sources; reviewer to add"
+  - cells:
+      agent: "Milrinone"
+      receptors: "Phosphodiesterase inhibitor (non-receptor)"
+      effect: "Increases contractility and causes vasodilation"
+      role: "Inodilator; not addressed in the sepsis guideline"
+      watch: "Hypotension; arrhythmias"
+footnotes:
+  - id: a
+    text: "SSC 2021 strong recommendation for an initial MAP target of 65 mm Hg in septic shock."
+    refs: [ssc2021, oczkowski2022]
+  - id: b
+    text: "SSC 2021 prefers norepinephrine over dopamine (high quality evidence), vasopressin (moderate), epinephrine (low), selepressin (low), and angiotensin II (very low)."
+    refs: [ssc2021, oczkowski2022]
+  - id: c
+    text: "SSC 2021 weak recommendation; no dose specified. In practice vasopressin is often started at norepinephrine doses of about 0.25 to 0.5 mcg/kg/min, but this is not a formal recommendation."
+    refs: [ssc2021, oczkowski2022]
+  - id: d
+    text: "SSC 2021: for cardiac dysfunction with persistent hypoperfusion despite adequate volume status and blood pressure, add dobutamine or switch norepinephrine to epinephrine. Epinephrine as third-line vasopressor is a weak recommendation with scant evidence."
+    refs: [ssc2021, oczkowski2022]
+  - id: e
+    text: "Reviewer: add the role and cautions for phenylephrine from a verified source before this table is marked reviewed."
+  - id: f
+    text: "If norepinephrine is unavailable, epinephrine or dopamine is a reasonable alternative despite higher arrhythmia risk."
+    refs: [oczkowski2022]
+caveats:
+  - "Receptor and effect columns follow Lan et al. 2025. Role recommendations are for septic shock (SSC 2021); other shock states (cardiogenic, vasoplegic, anaphylactic) may differ."
+  - "Doses are intentionally omitted. Use institutional protocols and product labeling."
+  - "SSC 2021 suggests starting vasopressors peripherally rather than delaying until central access is obtained (weak recommendation, very low quality evidence)."
+references:
+  - id: ssc2021
+    citation: "Evans L, Rhodes A, Alhazzani W, et al. Surviving Sepsis Campaign: international guidelines for management of sepsis and septic shock 2021. Crit Care Med. 2021;49(11)."
+    doi: "10.1097/CCM.0000000000005337"
+  - id: oczkowski2022
+    citation: "Oczkowski S, Alshamsi F, Belley-Cote E, et al. Surviving Sepsis Campaign Guidelines 2021: highlights for the practicing clinician. Pol Arch Intern Med. 2022."
+    doi: "10.20452/pamw.16290"
+    url: "https://www.mp.pl/paim/issue/article/16290/"
+  - id: lan2025
+    citation: "Lan P, Chen L, Zhang C, Ni J, Yu P, Zhou J. Beyond the heart: a review exploring non-cardiovascular effects of vasoactive agents. Front Pharmacol. 2025;16:1533437."
+    doi: "10.3389/fphar.2025.1533437"
