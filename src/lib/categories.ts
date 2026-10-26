@@ -1,4 +1,4 @@
-// Icon and pastel for each category heading on the home page. Icons are
+// Icon and accent color for each category heading on the home page. Icons are
 // 24x24 line drawings (stroke only), so they take the heading's text color.
 // A category without an entry gets the fallback icon and a rotating color.
 
@@ -25,13 +25,13 @@ const icons = {
 };
 
 const styles: Record<string, CategoryStyle> = {
-  cardiology: { color: 'var(--rose)', icon: icons.cardiology },
-  'critical care': { color: 'var(--blue)', icon: icons.criticalCare },
-  endocrinology: { color: 'var(--sage)', icon: icons.endocrinology },
-  resuscitation: { color: 'var(--sand)', icon: icons.resuscitation },
+  cardiology: { color: 'var(--oxblood)', icon: icons.cardiology },
+  'critical care': { color: 'var(--navy)', icon: icons.criticalCare },
+  endocrinology: { color: 'var(--forest)', icon: icons.endocrinology },
+  resuscitation: { color: 'var(--ochre)', icon: icons.resuscitation },
 };
 
-const rotation = ['var(--rose)', 'var(--blue)', 'var(--sage)', 'var(--sand)'];
+const rotation = ['var(--navy)', 'var(--oxblood)', 'var(--forest)', 'var(--ochre)'];
 
 export function categoryStyle(category: string, index: number): CategoryStyle {
   return styles[category.toLowerCase()] ?? { color: rotation[index % rotation.length], icon: icons.table };

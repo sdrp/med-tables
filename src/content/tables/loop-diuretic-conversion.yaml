@@ -1,4 +1,4 @@
-title: Loop Diuretic Conversion (Furosemide, Bumetanide, Torsemide)
+title: Loop Diuretic Conversion (Furosemide, Torsemide, Bumetanide)
 slug: loop-diuretic-conversion
 category: Cardiology
 summary: Approximate equivalent doses and key pharmacology of the three common loop diuretics, IV and PO.
@@ -9,10 +9,10 @@ columns:
     label: Property
   - key: furosemide
     label: Furosemide
-  - key: bumetanide
-    label: Bumetanide
   - key: torsemide
     label: Torsemide
+  - key: bumetanide
+    label: Bumetanide
 rows:
   - cells:
       property: { text: "Approximate equivalent IV dose", notes: [a] }
