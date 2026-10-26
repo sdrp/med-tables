@@ -76,7 +76,7 @@ const isProd = import.meta.env.PROD;
           const dark = root.dataset.theme === 'dark';
           button.setAttribute('aria-pressed', String(dark));
           button.textContent = dark ? 'Light mode' : 'Dark mode';
-          meta.content = dark ? '#1c1915' : '#ffffff';
+          meta.content = dark ? '#121212' : '#ffffff';
         };
         button.addEventListener('click', () => {
           const dark = root.dataset.theme !== 'dark';

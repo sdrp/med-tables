@@ -37,21 +37,21 @@
 
 /* Dark mode is opt-in (header toggle sets data-theme on <html>). */
 :root[data-theme='dark'] {
-  --bg: #1c1915;
-  --surface: #26221d;
-  --text: #ece3d1;
-  --muted: #b9ad98;
-  --ink: #6d6253;
-  --rule: #3a342c;
-  --zebra: #2c2722;
-  --head: #35424f;
-  --head-text: #ece3d1;
+  --bg: #121212;
+  --surface: #121212;
+  --text: #ebebea;
+  --muted: #a9a9a6;
+  --ink: #5c5c59;
+  --rule: #2b2b29;
+  --zebra: #1a1a19;
+  --head: #33414f;
+  --head-text: #ebebea;
   --accent: #a9c3e3;
   --accent-hover: #cfdcef;
   --focus: #d9b86a;
-  --caveat-bg: #2e2620;
+  --caveat-bg: #1c1a17;
   --caveat-border: #c0796f;
-  --target: #4a3d22;
+  --target: #3a3320;
 
   color-scheme: dark;
 }
