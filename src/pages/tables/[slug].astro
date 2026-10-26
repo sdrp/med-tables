@@ -45,14 +45,6 @@ const reviewed = t.last_reviewed ? formatDate(t.last_reviewed) : 'Not yet review
       </div>
     </dl>
 
-    {
-      t.status === 'draft' && (
-        <p class="draft-banner" role="note">
-          <strong>Draft:</strong> pending clinician review.
-        </p>
-      )
-    }
-
     <div class="table-wrap" tabindex="0" role="region" aria-labelledby="table-caption">
       <table class="data-table">
         <caption id="table-caption" data-pagefind-ignore>{t.title}</caption>
@@ -183,7 +175,6 @@ const reviewed = t.last_reviewed ? formatDate(t.last_reviewed) : 'Not yet review
 
     <p class="print-meta" data-pagefind-ignore>
       Printed from {pageUrl}. Last reviewed: {reviewed}. Reviewed by: {t.reviewed_by}.
-      {t.status === 'draft' && ' Draft: pending clinician review.'}
     </p>
   </article>
 </Base>

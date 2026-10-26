@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { withBase } from '../lib/site';
+import { categoryStyle, categoryId } from '../lib/categories';
 
 const tables = await getCollection('tables');
 const byCategory = new Map<string, typeof tables>();
@@ -21,7 +22,7 @@ const baseUrl = withBase();
   </Fragment>
 
   <section class="intro">
-    <h1>Clinical reference <span class="hl">tables</span></h1>
+    <h1>Clinical Reference <span class="hl">Tables</span></h1>
     <p>
       Conversion and reference tables for clinicians, each with footnotes, caveats, and cited sources. Check every
       value against the references and your local protocols.
@@ -33,22 +34,29 @@ const baseUrl = withBase();
   <noscript><p class="search-note">Search needs JavaScript. All tables are listed below.</p></noscript>
 
   {
-    categories.map((category) => (
-      <section class="category" aria-labelledby={`cat-${category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
-        <h2 id={`cat-${category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>{category}</h2>
+    categories.map((category, i) => {
+      const style = categoryStyle(category, i);
+      return (
+      <section class="category" aria-labelledby={categoryId(category)}>
+        <h2 id={categoryId(category)} class="category-heading">
+          <span class="category-icon" style={`--tile: ${style.color}`} aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={style.icon} />
+          </span>
+          <span class="category-name">{category}</span>
+        </h2>
         <ul class="cards">
           {byCategory.get(category)!.map((t) => (
             <li class="card">
               <a href={withBase(`tables/${t.data.slug}/`)}>
                 <span class="card-title">{t.data.title}</span>
                 <span class="card-summary">{t.data.summary}</span>
-                {t.data.status === 'draft' && <span class="tag">Draft</span>}
               </a>
             </li>
           ))}
         </ul>
       </section>
-    ))
+      );
+    })
   }
 
   <script is:inline define:vars={{ pagefindBase, baseUrl }}>

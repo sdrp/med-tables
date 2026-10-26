@@ -61,12 +61,13 @@ The build fails if a cell or row cites an undefined footnote, a footnote cites a
 ## Writing style
 
 - Plain, short sentences. No marketing language.
+- Table titles and categories use title case: capitalize every major word, but not articles, short conjunctions, or prepositions (a, an, the, and, but, or, if, of, to, in, on, for, with).
 - Spell out ranges as "8 to 12", not "8-12".
 - Do not use em dashes. Use commas, colons, or parentheses.
 
 ## How review works
 
-1. New and changed tables are merged with `status: draft`. The site shows a "Draft: pending clinician review" banner on them.
+1. New and changed tables are merged with `status: draft`. The site shows them as "Not yet reviewed".
 2. A clinician reviewer checks every value, footnote, and caveat against the cited sources, and records any concerns in the pull request.
 3. Only the maintainer changes a table to `status: reviewed`, setting `last_reviewed` (YYYY-MM-DD) and `reviewed_by`. The pull request is the review record.
 4. Any later change to a reviewed table's values returns it to review.
