@@ -25,13 +25,13 @@ const icons = {
 };
 
 const styles: Record<string, CategoryStyle> = {
-  cardiology: { color: 'var(--oxblood)', icon: icons.cardiology },
-  'critical care': { color: 'var(--navy)', icon: icons.criticalCare },
-  endocrinology: { color: 'var(--forest)', icon: icons.endocrinology },
-  resuscitation: { color: 'var(--ochre)', icon: icons.resuscitation },
+  cardiology: { color: 'var(--sec-cv)', icon: icons.cardiology },
+  'critical care': { color: 'var(--sec-cc)', icon: icons.criticalCare },
+  endocrinology: { color: 'var(--sec-en)', icon: icons.endocrinology },
+  resuscitation: { color: 'var(--sec-cc)', icon: icons.resuscitation },
 };
 
-const rotation = ['var(--navy)', 'var(--oxblood)', 'var(--forest)', 'var(--ochre)'];
+const rotation = ['var(--sec-cc)', 'var(--sec-cv)', 'var(--sec-en)', 'var(--sec-re)'];
 
 export function categoryStyle(category: string, index: number): CategoryStyle {
   return styles[category.toLowerCase()] ?? { color: rotation[index % rotation.length], icon: icons.table };

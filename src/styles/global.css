@@ -1,57 +1,84 @@
 /* Med Tables: one stylesheet, plain CSS, every color a custom property.
-   Look: white paper, thin dark rules, serif type, deep accents. */
+   Look: a pocket field guide. Index cards on grid paper, colored section
+   bands, condensed uppercase headings, a handwritten accent. */
 
 :root {
-  /* Deep accents (category tiles, table header) */
-  --navy: #2c3a4a;
-  --oxblood: #6e2c27;
-  --forest: #34503d;
-  --ochre: #7d5f22;
-  --on-accent: #f7f1e3; /* text and icons on a deep accent */
+  /* Section band colors. Same in light and dark; band text is always --band-ink. */
+  --sec-cv: #e8735a;
+  --sec-cc: #6fa3d8;
+  --sec-en: #e9c15a;
+  --sec-re: #5fb8a6;
+  --sec-id: #9cc46b;
+  --sec-ne: #e59ac0;
+  --sec-ho: #d9a066;
+  --sec-ph: #a98bd9;
+  --sec-sp: #8fb3e8;
+  --band-ink: #1b2a22;
 
   /* Roles */
-  --bg: #ffffff;
-  --surface: #ffffff;
-  --text: #231f1a;
-  --muted: #574e43;
-  --ink: #3a3229; /* outlines */
-  --rule: #e6e2da; /* thin lines inside tables */
-  --zebra: #f7f6f2;
-  --head: var(--navy);
-  --head-text: var(--on-accent);
-  --accent: #1f4470;
-  --accent-hover: #142e4d;
-  --focus: #1f4470;
-  --caveat-bg: #f6f3ec;
-  --caveat-border: var(--oxblood);
-  --target: #f3e2b3;
+  --paper-bg: #eef1ec;
+  --grid-line: #dce3da;
+  --card: #fffdf8;
+  --ink: #1b2a22;
+  --muted: #3f5a4c;
+  --note: #b4462f;
+  --rule: #d9e4ec;
+  --hairline: #cfd8cc; /* thin lines inside tables */
+  --zebra: #f3f5ee;
+  --head-bg: var(--ink);
+  --head-text: var(--card);
+  --callout-bg: #fbf3e4;
+  --target: #fbe7a8;
+  --shadow: var(--ink);
 
-  --serif: Charter, 'Bitstream Charter', 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --radius: 3px;
+  --font-sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-hand: 'Kalam', 'Bradley Hand', 'Segoe Print', cursive;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --condensed: 72%;
+  --border: 2px;
+  --offset: 5px;
+  --radius: 4px;
+  --grid: 24px;
   --measure: 46rem;
   --page: 72rem;
 
   color-scheme: light;
 }
 
-/* Dark mode is opt-in (header toggle sets data-theme on <html>). */
+/* Dark tokens: used when the system is dark (unless the toggle chose light),
+   or when the toggle chose dark. Keep the two blocks identical. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper-bg: #111a15;
+    --grid-line: #1c2821;
+    --card: #17211c;
+    --ink: #e9efe6;
+    --muted: #a9bbb0;
+    --note: #f0a08c;
+    --rule: #24332b;
+    --hairline: #2c3c33;
+    --zebra: #1c2822;
+    --callout-bg: #221f16;
+    --target: #3d3620;
+    --shadow: #4a5f53;
+
+    color-scheme: dark;
+  }
+}
+
 :root[data-theme='dark'] {
-  --bg: #121212;
-  --surface: #121212;
-  --text: #ebebea;
-  --muted: #a9a9a6;
-  --ink: #5c5c59;
-  --rule: #2b2b29;
-  --zebra: #1a1a19;
-  --head: #33414f;
-  --head-text: #ebebea;
-  --accent: #a9c3e3;
-  --accent-hover: #cfdcef;
-  --focus: #d9b86a;
-  --caveat-bg: #1c1a17;
-  --caveat-border: #c0796f;
-  --target: #3a3320;
+  --paper-bg: #111a15;
+  --grid-line: #1c2821;
+  --card: #17211c;
+  --ink: #e9efe6;
+  --muted: #a9bbb0;
+  --note: #f0a08c;
+  --rule: #24332b;
+  --hairline: #2c3c33;
+  --zebra: #1c2822;
+  --callout-bg: #221f16;
+  --target: #3d3620;
+  --shadow: #4a5f53;
 
   color-scheme: dark;
 }
@@ -69,55 +96,77 @@ html {
   text-size-adjust: 100%;
 }
 
+/* Grid paper lives only on the page background. Cards, tables, and callouts
+   are solid so text never sits on lines. */
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--serif);
+  background-color: var(--paper-bg);
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid) var(--grid);
+  color: var(--ink);
+  font-family: var(--font-sans);
   font-size: 1.0625rem;
-  line-height: 1.6;
-  font-variant-numeric: lining-nums;
+  line-height: 1.55;
   overflow-wrap: break-word;
 }
 
 h1,
 h2,
 h3 {
-  line-height: 1.2;
-  font-weight: 700;
+  font-stretch: var(--condensed);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  word-spacing: 0.08em;
+  line-height: 1.05;
 }
 
 h1 {
-  font-size: clamp(1.65rem, 1.3rem + 1.5vw, 2.3rem);
+  font-size: clamp(2rem, 1.5rem + 2.5vw, 3.25rem);
   margin: 1.5rem 0 0.5rem;
-  letter-spacing: -0.005em;
 }
 
 h2 {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   margin: 2rem 0 0.75rem;
 }
 
+h3 {
+  font-size: 1.2rem;
+}
+
 a {
-  color: var(--accent);
-  text-underline-offset: 0.15em;
+  color: var(--ink);
+  text-decoration-color: var(--muted);
+  text-underline-offset: 0.18em;
   text-decoration-thickness: 1px;
 }
 
 a:hover {
-  color: var(--accent-hover);
+  text-decoration-color: var(--ink);
   text-decoration-thickness: 2px;
 }
 
 :focus-visible {
-  outline: 2px solid var(--focus);
+  outline: 3px solid var(--ink);
   outline-offset: 2px;
-  border-radius: 2px;
 }
 
 code {
-  font-family: var(--mono);
+  font-family: var(--font-mono);
   font-size: 0.85em;
+}
+
+.hand {
+  font-family: var(--font-hand);
+  font-size: max(1.125rem, 1em);
+  font-weight: 400;
+  color: var(--note);
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.3;
 }
 
 .container {
@@ -129,12 +178,12 @@ code {
 .skip-link {
   position: absolute;
   left: 0.5rem;
-  top: -3rem;
-  background: var(--surface);
-  color: var(--accent);
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--ink);
-  border-radius: var(--radius);
+  top: -4rem;
+  background: var(--card);
+  color: var(--ink);
+  padding: 0.6rem 0.9rem;
+  border: var(--border) solid var(--ink);
+  font-weight: 700;
   z-index: 10;
 }
 
@@ -142,28 +191,43 @@ code {
   top: 0.5rem;
 }
 
+/* Shared surfaces */
+
+.sheet {
+  background: var(--card);
+  border: var(--border) solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--offset) var(--offset) 0 var(--shadow);
+}
+
 /* Header and footer */
 
 .site-header {
-  border-bottom: 3px double var(--ink);
+  background: var(--card);
+  border-bottom: var(--border) solid var(--ink);
 }
 
 .header-inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0 1rem;
   min-height: 3.5rem;
 }
 
 .site-name {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
-  font-weight: 700;
-  font-size: 1.25rem;
-  letter-spacing: 0.01em;
-  color: var(--text);
+  gap: 10px;
+  min-height: 44px;
+  font-weight: 900;
+  font-stretch: var(--condensed);
+  text-transform: uppercase;
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: var(--ink);
   text-decoration: none;
 }
 
@@ -177,34 +241,41 @@ code {
 
 .site-header nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1.1rem;
+  gap: 0.75rem;
 }
 
 .site-header nav a {
-  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 0.25rem;
+  font-weight: 700;
+  color: var(--ink);
   text-decoration: none;
-  padding: 0.4rem 0;
 }
 
 .site-header nav a:hover {
   text-decoration: underline;
-  color: var(--text);
 }
 
 .theme-toggle {
   font: inherit;
   font-size: 0.85rem;
-  color: var(--text);
-  background: transparent;
-  border: 1px solid var(--ink);
+  font-weight: 700;
+  min-height: 44px;
+  color: var(--ink);
+  background: var(--card);
+  border: var(--border) solid var(--ink);
   border-radius: var(--radius);
-  padding: 0.15rem 0.6rem;
+  padding: 0 0.7rem;
+  white-space: nowrap;
   cursor: pointer;
 }
 
 .theme-toggle:hover {
-  background: var(--surface);
+  background: var(--zebra);
 }
 
 main {
@@ -212,7 +283,8 @@ main {
 }
 
 .site-footer {
-  border-top: 3px double var(--ink);
+  background: var(--card);
+  border-top: var(--border) solid var(--ink);
   color: var(--muted);
   font-size: 0.9rem;
   padding: 1.25rem 0 2rem;
@@ -221,6 +293,136 @@ main {
 .site-footer p {
   margin: 0.4rem 0;
   max-width: var(--measure);
+}
+
+.site-footer a {
+  color: var(--ink);
+}
+
+/* Field guide card (src/components/Card.astro) */
+
+.fg-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--card);
+  border: var(--border) solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--offset) var(--offset) 0 var(--shadow);
+  color: var(--ink);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+a.fg-card:hover .fg-card__title {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.12em;
+}
+
+/* Pressing a card pushes it into its shadow. */
+a.fg-card:active {
+  transform: translate(2px, 2px);
+  box-shadow: calc(var(--offset) - 2px) calc(var(--offset) - 2px) 0 var(--shadow);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a.fg-card {
+    transition:
+      transform 80ms ease-out,
+      box-shadow 80ms ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.fg-card:active {
+    transform: none;
+    box-shadow: var(--offset) var(--offset) 0 var(--shadow);
+  }
+}
+
+.fg-card__band {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.4rem 0.85rem;
+  background: var(--band, var(--sec-cc));
+  color: var(--band-ink);
+  border-bottom: var(--border) solid var(--ink);
+  font-weight: 800;
+  font-stretch: var(--condensed);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.9rem;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.fg-card__no {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Faint ruled lines, like an index card. Decorative only. */
+.fg-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 0.75rem 0.85rem 0.9rem;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(1.75rem - 1px),
+    var(--rule) calc(1.75rem - 1px),
+    var(--rule) 1.75rem
+  );
+  background-position: 0 0.4rem;
+}
+
+.fg-card__title {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.fg-card__tagline {
+  margin: 0;
+}
+
+.fg-card__headline {
+  margin: 0.2rem 0 0;
+  padding: 0.2rem 0.55rem;
+  background: var(--card);
+  border: var(--border) solid var(--ink);
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.fg-card__draft {
+  margin-top: auto;
+  padding: 0.1rem 0.5rem;
+  background: var(--card);
+  border: 1.5px dashed var(--muted);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.card-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 1.25rem calc(1rem + var(--offset));
 }
 
 /* Home */
@@ -234,14 +436,14 @@ main {
 .search {
   margin: 1.5rem 0 0.5rem;
   max-width: var(--measure);
-  --pagefind-ui-primary: var(--accent);
-  --pagefind-ui-text: var(--text);
-  --pagefind-ui-background: var(--surface);
+  --pagefind-ui-primary: var(--ink);
+  --pagefind-ui-text: var(--ink);
+  --pagefind-ui-background: var(--card);
   --pagefind-ui-border: var(--ink);
   --pagefind-ui-tag: var(--zebra);
-  --pagefind-ui-border-width: 1px;
-  --pagefind-ui-border-radius: 3px;
-  --pagefind-ui-font: var(--serif);
+  --pagefind-ui-border-width: 2px;
+  --pagefind-ui-border-radius: 4px;
+  --pagefind-ui-font: var(--font-sans);
   --pagefind-ui-scale: 0.9;
 }
 
@@ -257,29 +459,21 @@ main {
 
 .category-heading {
   display: flex;
-  align-items: stretch;
-  margin: 2.25rem 0 1rem;
-  font-size: 1.05rem;
-  font-weight: 700;
-  font-variant-caps: all-small-caps;
-  letter-spacing: 0.08em;
-  border-bottom: 1px solid var(--ink);
+  align-items: center;
+  gap: 0.65rem;
+  margin: 2.5rem 0 1rem;
 }
 
 .category-icon {
   display: grid;
   place-items: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  margin-bottom: -1px;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
   background: var(--tile);
-  color: var(--on-accent);
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-
-.category-name {
-  align-self: center;
-  padding: 0 0.75rem;
+  color: var(--band-ink);
+  border: var(--border) solid var(--ink);
+  border-radius: var(--radius);
 }
 
 .cards {
@@ -288,7 +482,7 @@ main {
   margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
-  gap: 1rem;
+  gap: 1.25rem calc(1rem + var(--offset));
 }
 
 .card a {
@@ -297,29 +491,38 @@ main {
   gap: 0.35rem;
   height: 100%;
   padding: 1rem 1.1rem;
-  background: var(--surface);
-  border: 1px solid var(--ink);
+  background: var(--card);
+  border: var(--border) solid var(--ink);
   border-radius: var(--radius);
-  color: var(--text);
+  box-shadow: var(--offset) var(--offset) 0 var(--shadow);
+  color: var(--ink);
   text-decoration: none;
-}
-
-.card a:hover {
-  border-color: var(--accent);
-  box-shadow: inset 0 0 0 1px var(--accent);
 }
 
 .card a:hover .card-title {
   text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.15em;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.12em;
+}
+
+.card a:active {
+  transform: translate(2px, 2px);
+  box-shadow: calc(var(--offset) - 2px) calc(var(--offset) - 2px) 0 var(--shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card a:active {
+    transform: none;
+    box-shadow: var(--offset) var(--offset) 0 var(--shadow);
+  }
 }
 
 .card-title {
-  font-weight: 700;
-  font-size: 1.1rem;
-  line-height: 1.3;
-  color: var(--accent);
+  font-weight: 900;
+  font-stretch: var(--condensed);
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  line-height: 1.1;
 }
 
 .card-summary {
@@ -335,6 +538,10 @@ main {
   color: var(--muted);
 }
 
+.crumbs a {
+  color: var(--ink);
+}
+
 .crumbs + h1 {
   margin-top: 0.25rem;
 }
@@ -348,9 +555,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem 1.5rem;
-  margin: 0 0 1.25rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--rule);
+  margin: 0 0 1.5rem;
   font-size: 0.9rem;
   color: var(--muted);
 }
@@ -360,17 +565,14 @@ main {
   gap: 0.4rem;
 }
 
-.review-meta dt {
-  font-style: italic;
-}
-
 .review-meta dt::after {
   content: ':';
 }
 
 .review-meta dd {
   margin: 0;
-  color: var(--text);
+  color: var(--ink);
+  font-weight: 600;
 }
 
 /* The table scrolls inside its own box, never the page. A max height keeps the
@@ -378,9 +580,10 @@ main {
 .table-wrap {
   overflow: auto;
   max-height: calc(100dvh - 2rem);
-  background: var(--surface);
-  border: 1px solid var(--ink);
+  background: var(--card);
+  border: var(--border) solid var(--ink);
   border-radius: var(--radius);
+  box-shadow: var(--offset) var(--offset) 0 var(--shadow);
   overscroll-behavior-x: contain;
 }
 
@@ -407,8 +610,8 @@ main {
   padding: 0.6rem 0.8rem;
   text-align: left;
   vertical-align: top;
-  border-bottom: 1px solid var(--rule);
-  background: var(--surface);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--card);
 }
 
 .data-table .wide {
@@ -419,18 +622,20 @@ main {
   position: sticky;
   top: 0;
   z-index: 2;
-  background: var(--head);
+  background: var(--head-bg);
   color: var(--head-text);
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.01em;
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   vertical-align: bottom;
   border-bottom: 0;
 }
 
 .data-table .unit {
   font-weight: 400;
-  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .data-table tbody th {
@@ -455,8 +660,8 @@ main {
 .note-marks a {
   padding: 0 0.1em;
   text-decoration: none;
-  font-weight: 700;
-  font-style: italic;
+  font-weight: 800;
+  color: var(--note);
 }
 
 .note-marks a:hover {
@@ -482,7 +687,7 @@ main {
     z-index: 1;
     max-width: 42vw;
     min-width: 7rem;
-    box-shadow: 1px 0 0 var(--rule);
+    box-shadow: 1px 0 0 var(--hairline);
   }
 
   .data-table thead th:first-child {
@@ -512,13 +717,13 @@ main {
 
 .fn-label,
 .ref-number {
-  font-weight: 700;
+  font-weight: 800;
   color: var(--muted);
   font-variant-numeric: lining-nums tabular-nums;
 }
 
 .fn-label {
-  font-style: italic;
+  color: var(--note);
 }
 
 .backrefs a {
@@ -530,8 +735,10 @@ main {
   max-width: var(--measure);
   margin: 2rem 0 0;
   padding: 0.25rem 1.1rem 0.6rem;
-  background: var(--caveat-bg);
-  border-left: 3px solid var(--caveat-border);
+  background: var(--callout-bg);
+  border: var(--border) solid var(--ink);
+  border-left-width: 6px;
+  border-radius: var(--radius);
 }
 
 .caveats h2 {
@@ -560,9 +767,16 @@ main {
   font-size: 0.9rem;
 }
 
+.references > li > div {
+  min-width: 0;
+}
+
+.ref-links a {
+  overflow-wrap: anywhere;
+}
+
 .ref-link-label {
   color: var(--muted);
-  font-style: italic;
 }
 
 .report {
@@ -575,36 +789,67 @@ main {
   display: none;
 }
 
-/* Prose pages */
+/* Prose pages sit on a solid sheet so text never sits on grid lines. */
 
 .prose {
   max-width: var(--measure);
+  margin-top: 1.5rem;
+  padding: 0.25rem 1.25rem 1rem;
+  background: var(--card);
+  border: var(--border) solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--offset) var(--offset) 0 var(--shadow);
 }
 
 .prose li + li {
   margin-top: 0.4rem;
 }
 
+/* Footnotes, references, and the home intro sit on solid sheets too.
+   The full card page layout comes later; this keeps long text off the grid. */
+.intro,
+.table-page > section {
+  max-width: var(--measure);
+  margin-top: 2rem;
+  padding: 0.25rem 1.1rem 0.75rem;
+  background: var(--card);
+  border: var(--border) solid var(--ink);
+  border-radius: var(--radius);
+}
+
+.table-page > section > h2 {
+  margin-top: 0.75rem;
+}
+
+.intro {
+  margin-top: 1.5rem;
+}
+
+.intro h1 {
+  margin-top: 0.75rem;
+}
+
 /* Print: black on white, no chrome, keep footnotes and references. */
 
 @media print {
   :root,
-  :root[data-theme='dark'] {
-    --bg: #fff;
-    --surface: #fff;
-    --text: #000;
-    --muted: #000;
+  :root[data-theme='dark'],
+  :root:not([data-theme='light']) {
+    --paper-bg: #fff;
+    --card: #fff;
     --ink: #000;
-    --rule: #999;
+    --muted: #000;
+    --note: #000;
+    --hairline: #999;
     --zebra: #f2f2f2;
-    --head: #e6e6e6;
+    --head-bg: #e6e6e6;
     --head-text: #000;
-    --accent: #000;
-    --caveat-bg: #fff;
-    --caveat-border: #000;
+    --callout-bg: #fff;
+    --shadow: transparent;
   }
 
   body {
+    background: #fff;
     font-size: 10.5pt;
     line-height: 1.4;
   }
@@ -635,6 +880,15 @@ main {
     overflow: visible;
     max-height: none;
     border: 0;
+    box-shadow: none;
+  }
+
+  .table-page > section,
+  .prose,
+  .intro {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
   }
 
   .data-table th,

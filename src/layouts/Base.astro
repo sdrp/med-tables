@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { SITE_NAME, SITE_DESCRIPTION, REPO_URL, withBase } from '../lib/site';
 // Inlined so the mark's currentColor follows the header text color.
 import logoMark from '../assets/logo-mark.svg?raw';
+import { fontFaceCss, preloadFonts } from '../lib/fonts';
 
 interface Props {
   title?: string;
@@ -25,13 +26,17 @@ const isProd = import.meta.env.PROD;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#EEF1EC" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111A15" media="(prefers-color-scheme: dark)" />
     <script is:inline>
-      // Light is the default. Dark mode is opt-in via the header toggle and remembered.
+      // Follow the system theme unless the header toggle saved a choice.
       try {
-        if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved;
       } catch {}
     </script>
+    {preloadFonts.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
+    <style is:inline set:html={fontFaceCss} />
     <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
     <link rel="apple-touch-icon" href={withBase('apple-touch-icon.png')} />
     <link rel="manifest" href={withBase('manifest.webmanifest')} />
@@ -71,22 +76,24 @@ const isProd = import.meta.env.PROD;
       (() => {
         const button = document.querySelector('.theme-toggle');
         const root = document.documentElement;
-        const meta = document.querySelector('meta[name="theme-color"]');
+        const metas = document.querySelectorAll('meta[name="theme-color"]');
+        const system = matchMedia('(prefers-color-scheme: dark)');
+        const isDark = () => (root.dataset.theme ? root.dataset.theme === 'dark' : system.matches);
         const render = () => {
-          const dark = root.dataset.theme === 'dark';
+          const dark = isDark();
           button.setAttribute('aria-pressed', String(dark));
           button.textContent = dark ? 'Light mode' : 'Dark mode';
-          meta.content = dark ? '#121212' : '#ffffff';
+          if (root.dataset.theme) for (const m of metas) m.content = dark ? '#111A15' : '#EEF1EC';
         };
         button.addEventListener('click', () => {
-          const dark = root.dataset.theme !== 'dark';
-          if (dark) root.dataset.theme = 'dark';
-          else delete root.dataset.theme;
+          const theme = isDark() ? 'light' : 'dark';
+          root.dataset.theme = theme;
           try {
-            localStorage.setItem('theme', dark ? 'dark' : 'light');
+            localStorage.setItem('theme', theme);
           } catch {}
           render();
         });
+        system.addEventListener('change', render);
         button.hidden = false;
         render();
       })();

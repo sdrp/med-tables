@@ -1,0 +1,36 @@
+---
+// One table as an index card: a section band (short name and card number),
+// the title, an optional handwritten tagline, an optional one-glance headline
+// value, and a draft badge. The whole card is one link. The band always
+// prints its text, so color is never the only signal.
+
+interface Props {
+  href?: string;
+  title: string;
+  sectionShort: string;
+  cardNo?: string;
+  /** Any CSS color, usually a section token such as "var(--sec-cv)". */
+  color: string;
+  tagline?: string;
+  headline?: string;
+  draft?: boolean;
+  headingLevel?: 2 | 3 | 4;
+}
+
+const { href, title, sectionShort, cardNo, color, tagline, headline, draft = false, headingLevel = 3 } = Astro.props;
+const Tag = href ? 'a' : 'div';
+const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4';
+---
+
+<Tag class="fg-card" href={href} style={`--band: ${color}`}>
+  <span class="fg-card__band">
+    <span>{sectionShort}</span>
+    {cardNo && <span class="fg-card__no">{cardNo}</span>}
+  </span>
+  <span class="fg-card__body">
+    <Heading class="fg-card__title">{title}</Heading>
+    {tagline && <span class="fg-card__tagline hand">{tagline}</span>}
+    {headline && <span class="fg-card__headline">{headline}</span>}
+    {draft && <span class="fg-card__draft">Draft</span>}
+  </span>
+</Tag>

@@ -1,0 +1,147 @@
+---
+// Dev-only design reference at /styleguide/: tokens, type, section bands, and
+// card states. Never built for production. Sample text only, no clinical values.
+import Base from '../layouts/Base.astro';
+import Card from '../components/Card.astro';
+
+export function getStaticPaths() {
+  return import.meta.env.DEV ? [{ params: { styleguide: 'styleguide' } }] : [];
+}
+
+// Placeholder until sections.yaml lands in step 2.
+const sections = [
+  { code: 'CV', short: 'Cardio', name: 'Cardiovascular' },
+  { code: 'CC', short: 'Crit care', name: 'Critical care and resuscitation' },
+  { code: 'EN', short: 'Endo', name: 'Endocrine and metabolic' },
+  { code: 'RE', short: 'Renal', name: 'Renal, fluids, and electrolytes' },
+  { code: 'ID', short: 'ID', name: 'Infectious disease' },
+  { code: 'NE', short: 'Neuro', name: 'Neurology and psychiatry' },
+  { code: 'HO', short: 'Heme/Onc', name: 'Hematology and oncology' },
+  { code: 'PH', short: 'Pharm', name: 'Pharmacology and conversions' },
+  { code: 'SP', short: 'Special', name: 'Special populations' },
+];
+const tokens = ['paper-bg', 'grid-line', 'card', 'ink', 'muted', 'note', 'rule', 'hairline', 'zebra', 'callout-bg'];
+---
+
+<Base title="Styleguide">
+  <meta slot="head" name="robots" content="noindex" />
+
+  <section class="intro">
+    <h1>Styleguide</h1>
+    <p class="hand">for the white coat pocket</p>
+    <p>Dev only. Toggle dark mode in the header to check both themes.</p>
+  </section>
+
+  <h2>Section bands</h2>
+  <ul class="card-grid">
+    {
+      sections.map((s) => (
+        <li>
+          <Card
+            href="#"
+            title={s.name}
+            sectionShort={s.short}
+            cardNo={`${s.code}-00`}
+            color={`var(--sec-${s.code.toLowerCase()})`}
+            tagline="sample tagline"
+          />
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Card states</h2>
+  <ul class="card-grid">
+    <li>
+      <Card href="#" title="Title only" sectionShort="Cardio" cardNo="CV-00" color="var(--sec-cv)" />
+    </li>
+    <li>
+      <Card
+        href="#"
+        title="With a headline value"
+        sectionShort="Pharm"
+        cardNo="PH-00"
+        color="var(--sec-ph)"
+        tagline="the why and the how"
+        headline="1 : 2 : 3 sample"
+      />
+    </li>
+    <li>
+      <Card
+        href="#"
+        title="Draft card pending clinician review"
+        sectionShort="Endo"
+        cardNo="EN-00"
+        color="var(--sec-en)"
+        tagline="forty characters of handwriting max!"
+        draft
+      />
+    </li>
+    <li>
+      <Card
+        href="#"
+        title="A deliberately long card title that runs well past sixty characters to test wrapping"
+        sectionShort="Heme/Onc"
+        cardNo="HO-00"
+        color="var(--sec-ho)"
+        tagline="long titles wrap, never truncate"
+        headline="Headline value"
+        draft
+      />
+    </li>
+    <li>
+      <Card title="Static card, no link" sectionShort="Special" cardNo="SP-00" color="var(--sec-sp)" />
+    </li>
+  </ul>
+
+  <h2>Tokens</h2>
+  <ul class="swatches">
+    {
+      tokens.map((t) => (
+        <li>
+          <span class="swatch" style={`background: var(--${t})`} />
+          <code>--{t}</code>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Type</h2>
+  <div class="prose">
+    <h1>Heading one</h1>
+    <h2>Heading two</h2>
+    <h3>Heading three</h3>
+    <p>
+      Body text in Archivo at normal width. Tables use tabular numerals: <span class="nums">0123456789</span>. Links look
+      <a href="#">like this</a>.
+    </p>
+    <p class="hand">Kalam is for taglines and the hero note only.</p>
+  </div>
+
+  <style>
+    .swatches {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+      gap: 0.75rem;
+    }
+    .swatches li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--card);
+      padding: 0.4rem;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+    }
+    .swatch {
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid var(--ink);
+    }
+    .nums {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</Base>
