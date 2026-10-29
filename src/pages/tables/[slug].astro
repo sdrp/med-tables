@@ -3,7 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import NoteMarks from '../../components/NoteMarks.astro';
-import { prepareTable, formatDate, isoDate } from '../../lib/table';
+import { prepareTable } from '../../lib/table';
 import { absoluteUrl, reportErrorUrl, withBase } from '../../lib/site';
 
 export const getStaticPaths = (async () => {
@@ -23,7 +23,6 @@ interface Props {
 const t = Astro.props.entry.data;
 const { rows, footnotes, references, wideColumns } = prepareTable(t);
 const pageUrl = absoluteUrl(`tables/${t.slug}/`);
-const reviewed = t.last_reviewed ? formatDate(t.last_reviewed) : 'Not yet reviewed';
 ---
 
 <Base title={t.title} description={t.summary}>
@@ -33,17 +32,6 @@ const reviewed = t.last_reviewed ? formatDate(t.last_reviewed) : 'Not yet review
     </p>
     <h1 data-pagefind-meta="title">{t.title}</h1>
     <p class="summary">{t.summary}</p>
-
-    <dl class="review-meta">
-      <div>
-        <dt>Last reviewed</dt>
-        <dd>{t.last_reviewed ? <time datetime={isoDate(t.last_reviewed)}>{reviewed}</time> : reviewed}</dd>
-      </div>
-      <div>
-        <dt>Reviewed by</dt>
-        <dd>{t.reviewed_by}</dd>
-      </div>
-    </dl>
 
     <div class="table-wrap" tabindex="0" role="region" aria-labelledby="table-caption">
       <table class="data-table">
@@ -174,7 +162,7 @@ const reviewed = t.last_reviewed ? formatDate(t.last_reviewed) : 'Not yet review
     </p>
 
     <p class="print-meta" data-pagefind-ignore>
-      Printed from {pageUrl}. Last reviewed: {reviewed}. Reviewed by: {t.reviewed_by}.
+      Printed from {pageUrl}.
     </p>
   </article>
 </Base>

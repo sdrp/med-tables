@@ -45,27 +45,7 @@
   color-scheme: light;
 }
 
-/* Dark tokens: used when the system is dark (unless the toggle chose light),
-   or when the toggle chose dark. Keep the two blocks identical. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --paper-bg: #111a15;
-    --grid-line: #1c2821;
-    --card: #17211c;
-    --ink: #e9efe6;
-    --muted: #a9bbb0;
-    --note: #f0a08c;
-    --rule: #24332b;
-    --hairline: #2c3c33;
-    --zebra: #1c2822;
-    --callout-bg: #221f16;
-    --target: #3d3620;
-    --shadow: #4a5f53;
-
-    color-scheme: dark;
-  }
-}
-
+/* Dark mode is opt-in (header toggle sets data-theme on <html>). */
 :root[data-theme='dark'] {
   --paper-bg: #111a15;
   --grid-line: #1c2821;
@@ -224,8 +204,9 @@ code {
   font-weight: 900;
   font-stretch: var(--condensed);
   text-transform: uppercase;
-  font-size: 1.35rem;
-  letter-spacing: 0.02em;
+  font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.25rem);
+  line-height: 1;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   color: var(--ink);
   text-decoration: none;
@@ -234,8 +215,8 @@ code {
 .site-logo,
 .site-logo svg {
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   flex: none;
 }
 
@@ -278,7 +259,7 @@ code {
   background: var(--zebra);
 }
 
-main {
+main.container {
   padding-bottom: 3rem;
 }
 
@@ -551,30 +532,6 @@ a.fg-card:active {
   margin: 0 0 0.75rem;
 }
 
-.review-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 1.5rem;
-  margin: 0 0 1.5rem;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.review-meta div {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.review-meta dt::after {
-  content: ':';
-}
-
-.review-meta dd {
-  margin: 0;
-  color: var(--ink);
-  font-weight: 600;
-}
-
 /* The table scrolls inside its own box, never the page. A max height keeps the
    sticky header working, since the box is the scroll container. */
 .table-wrap {
@@ -833,8 +790,7 @@ a.fg-card:active {
 
 @media print {
   :root,
-  :root[data-theme='dark'],
-  :root:not([data-theme='light']) {
+  :root[data-theme='dark'] {
     --paper-bg: #fff;
     --card: #fff;
     --ink: #000;

@@ -1,0 +1,225 @@
+title: Guideline-Directed Medical Therapy for HFrEF (Four Pillars)
+slug: hfref-gdmt-four-pillars
+category: Cardiology
+summary: The four drug classes of foundational therapy for heart failure with reduced ejection fraction, with examples, key trials, when not to start, and what to monitor.
+status: draft
+reviewed_by: Pending
+columns:
+  - key: drug_class
+    label: Pillar and class
+  - key: examples
+    label: Examples (generic, US trade name)
+  - key: trials
+    label: Key trials
+  - key: mortality
+    label: All-cause mortality RRR
+    unit: "%"
+  - key: avoid
+    label: Do not start, or contraindicated
+  - key: notes
+    label: Monitoring and other notes
+rows:
+  - cells:
+      drug_class: { text: "Pillar 1, RAAS inhibition: ARNi (preferred)", notes: [a] }
+      examples: "Sacubitril/valsartan (Entresto)"
+      trials: { text: "PARADIGM-HF", notes: [b] }
+      mortality: { text: "16", notes: [c] }
+      avoid: { text: "Any history of angioedema. With an ACEi, or within 36 h of the last ACEi dose. With aliskiren in diabetes. Pregnancy (boxed warning).", notes: [d] }
+      notes: { text: "More symptomatic hypotension than enalapril. Monitor potassium and renal function. eGFR <30: start at half the usual starting dose.", notes: [e] }
+  - cells:
+      drug_class: { text: "Pillar 1 alternative: ACEi", notes: [f] }
+      examples: "Enalapril (Vasotec); lisinopril (Zestril)"
+      trials: { text: "CONSENSUS; SOLVD-Treatment", notes: [g] }
+      mortality: { text: "17", notes: [c, h] }
+      avoid: { text: "Any history of angioedema, including hereditary or idiopathic. With sacubitril/valsartan, or within 36 h of switching. With aliskiren in diabetes. Pregnancy (boxed warning). Caution if low blood pressure, renal insufficiency, or potassium >5.0 mEq/L.", notes: [i] }
+      notes: { text: "Cough and angioedema. Avoid abrupt withdrawal, which can cause clinical deterioration.", notes: [x] }
+  - cells:
+      drug_class: { text: "Pillar 1 alternative: ARB", notes: [j] }
+      examples: "Candesartan (Atacand); valsartan (Diovan)"
+      trials: { text: "CHARM-Alternative; Val-HeFT", notes: [k] }
+      mortality: { text: "17", notes: [c, h] }
+      avoid: { text: "With aliskiren in diabetes. Pregnancy (boxed warning). Caution if low blood pressure, renal insufficiency, or potassium >5.0 mEq/L.", notes: [l] }
+      notes: { text: "Much less cough and angioedema than ACEi, but angioedema has occurred with ARB.", notes: [x] }
+  - cells:
+      drug_class: { text: "Pillar 2: Beta-blocker (evidence-based agents only)", notes: [m] }
+      examples: "Bisoprolol; carvedilol (Coreg); metoprolol succinate (Toprol-XL)"
+      trials: { text: "CIBIS-II; COPERNICUS; MERIT-HF", notes: [n] }
+      mortality: { text: "34", notes: [c] }
+      avoid: { text: "Second- or third-degree AV block. Sick sinus syndrome. Severe bradycardia without a permanent pacemaker. Cardiogenic shock or decompensated HF (carvedilol: needing IV inotropes). Carvedilol also: bronchial asthma or bronchospasm, severe hepatic impairment.", notes: [o] }
+      notes: { text: "Start low and titrate to trial target doses. May start before discharge once stable and off IV inotropes. Avoid abrupt withdrawal.", notes: [p] }
+  - cells:
+      drug_class: "Pillar 3: MRA"
+      examples: "Spironolactone (Aldactone); eplerenone (Inspra)"
+      trials: { text: "RALES; EMPHASIS-HF", notes: [q] }
+      mortality: { text: "30", notes: [c] }
+      avoid: { text: "Do not start if eGFR ≤30 mL/min/1.73 m² or potassium ≥5.0 mEq/L. Stop if potassium cannot be kept <5.5 mEq/L.", notes: [r, s] }
+      notes: { text: "Hyperkalemia: check potassium and renal function at about 1 week, 4 weeks, then every 6 months. eGFR 31 to 49: halve the dose. Gynecomastia with spironolactone; less often with eplerenone.", notes: [t] }
+  - cells:
+      drug_class: "Pillar 4: SGLT2i"
+      examples: "Dapagliflozin (Farxiga); empagliflozin (Jardiance)"
+      trials: { text: "DAPA-HF; EMPEROR-Reduced", notes: [u] }
+      mortality: { text: "17", notes: [c] }
+      avoid: { text: "Dapagliflozin: starting not recommended if eGFR <25 mL/min/1.73 m². Empagliflozin: trials did not enroll eGFR <20 mL/min/1.73 m² or dialysis. Type 1 diabetes was excluded from the HF trials.", notes: [v] }
+      notes: { text: "Benefit with or without diabetes. Genital infections. Euglycemic ketoacidosis. Volume depletion: adjust diuretics if needed.", notes: [w] }
+footnotes:
+  - id: a
+    text: "Class 1 for HFrEF with NYHA class II to III symptoms. Patients in NYHA class II or III who tolerate an ACEi or ARB should be switched to an ARNi."
+    refs: [aha2022]
+  - id: b
+    text: "PARADIGM-HF: sacubitril/valsartan reduced the composite of cardiovascular death or HF hospitalization by 20% relative to enalapril."
+    refs: [aha2022, paradigm]
+  - id: c
+    text: "Relative risk reduction in all-cause mortality in the pivotal RCTs, from guideline Table 15. The ARNi value is the benefit added to ACEi therapy; the other classes are compared with placebo."
+    refs: [aha2022]
+  - id: d
+    text: "ARNi contraindications and boxed warning from the US label. The guideline lists ARNi with an ACEi, within 36 h of the last ACEi dose, or with any history of angioedema as Class 3 (harm). The label notes a higher rate of angioedema in Black patients than in non-Black patients."
+    refs: [entresto, aha2022]
+  - id: e
+    text: "US label: start at half the usual starting dose if eGFR <30 mL/min/1.73 m²; no dose adjustment for eGFR 30 to 90."
+    refs: [entresto, aha2022]
+  - id: f
+    text: "Class 1 when ARNi is not feasible."
+    refs: [aha2022]
+  - id: g
+    text: "Both trials used enalapril. CONSENSUS enrolled patients with severe HF."
+    refs: [consensus, solvd]
+  - id: h
+    text: "Table 15 gives a single value for ACEi or ARB."
+    refs: [aha2022]
+  - id: i
+    text: "Contraindications and boxed warning from the US labels for enalapril and lisinopril. The guideline lists ACEi with any history of angioedema as Class 3 (harm) and advises caution with low blood pressure, renal insufficiency, or potassium >5.0 mEq/L."
+    refs: [vasotec, zestril, aha2022]
+  - id: j
+    text: "Class 1 for patients intolerant of ACEi because of cough or angioedema when ARNi is not feasible."
+    refs: [aha2022]
+  - id: k
+    text: "CHARM-Alternative studied candesartan in patients intolerant of ACEi. Val-HeFT studied valsartan."
+    refs: [charm_alt, valheft]
+  - id: l
+    text: "Contraindications and boxed warning from the US labels for candesartan and valsartan. Cautions from the guideline."
+    refs: [atacand, diovan, aha2022]
+  - id: m
+    text: "The guideline recommends 1 of the 3 beta-blockers proven to reduce mortality: bisoprolol, carvedilol, or sustained-release metoprolol succinate. The benefit is not considered a class effect, and other beta-blockers are not included in the recommendation."
+    refs: [aha2022]
+  - id: n
+    text: "CIBIS-II studied bisoprolol, COPERNICUS carvedilol in severe chronic HF, and MERIT-HF metoprolol CR/XL."
+    refs: [cibis2, copernicus, merit]
+  - id: o
+    text: "Contraindications from the US labels for carvedilol and metoprolol succinate. The metoprolol succinate label allows sick sinus syndrome when a permanent pacemaker is in place."
+    refs: [coreg, toprol]
+  - id: p
+    text: "From the guideline. If a contraindication or intolerance is found, document it and retry later unless it is absolute."
+    refs: [aha2022]
+  - id: q
+    text: "RALES studied spironolactone in highly symptomatic patients with LVEF ≤35%. EMPHASIS-HF studied eplerenone in mild symptoms with LVEF ≤30%. EPHESUS (eplerenone after MI) also supports MRA use."
+    refs: [rales, emphasis, aha2022]
+  - id: r
+    text: "Guideline: Class 1 for NYHA class II to IV if eGFR >30 mL/min/1.73 m² and potassium <5.0 mEq/L. Discontinuing when potassium cannot be kept <5.5 mEq/L is Class 3 (harm)."
+    refs: [aha2022]
+  - id: s
+    text: "US labels. Spironolactone is contraindicated with hyperkalemia, Addison disease, or eplerenone. Eplerenone is contraindicated with potassium >5.5 mEq/L at initiation, creatinine clearance ≤30 mL/min, or strong CYP3A inhibitors."
+    refs: [aldactone, inspra]
+  - id: t
+    text: "Monitoring schedule and dose reduction from the guideline. The spironolactone label reports gynecomastia in about 9% of men in RALES. The guideline also suggests holding the MRA during diarrhea with dehydration or when the loop diuretic is interrupted."
+    refs: [aha2022, aldactone]
+  - id: u
+    text: "Compared with placebo, both trials reduced cardiovascular death or HF hospitalization by about 25%, regardless of diabetes status."
+    refs: [aha2022, dapahf, emperor]
+  - id: v
+    text: "From the US labels. The guideline notes the trials excluded eGFR <20 (EMPEROR-Reduced) or <30 mL/min/1.73 m² (DAPA-HF), type 1 diabetes, and systolic blood pressure below 95 to 100 mm Hg."
+    refs: [farxiga, jardiance, aha2022]
+  - id: w
+    text: "From the guideline. The labels list surgery, acute febrile illness, reduced caloric intake, and volume depletion among conditions that can precipitate ketoacidosis."
+    refs: [aha2022, farxiga, jardiance]
+  - id: x
+    text: "From the guideline."
+    refs: [aha2022]
+caveats:
+  - "Applies to HFrEF (LVEF ≤40%). This table does not cover HF with mildly reduced or preserved ejection fraction."
+  - "Start each drug at a low dose and titrate to the doses used in trials as tolerated. Doses are not listed here; see the guideline (Table 14)."
+  - "Contraindications summarize US labeling and the 2022 AHA/ACC/HFSA guideline and are not complete. Check current local labeling."
+  - "Trade names are US brand names and vary by country. Bisoprolol is listed by generic name only."
+references:
+  - id: aha2022
+    citation: "Heidenreich PA, Bozkurt B, Aguilar D, et al. 2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure: A Report of the American College of Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines. Circulation. 2022;145(18):e895-e1032."
+    pmid: "35363499"
+    doi: "10.1161/CIR.0000000000001063"
+  - id: paradigm
+    citation: "McMurray JJ, Packer M, Desai AS, et al. Angiotensin-neprilysin inhibition versus enalapril in heart failure. N Engl J Med. 2014;371(11):993-1004."
+    pmid: "25176015"
+    doi: "10.1056/NEJMoa1409077"
+  - id: consensus
+    citation: "CONSENSUS Trial Study Group. Effects of enalapril on mortality in severe congestive heart failure. Results of the Cooperative North Scandinavian Enalapril Survival Study (CONSENSUS). N Engl J Med. 1987;316(23):1429-1435."
+    pmid: "2883575"
+    doi: "10.1056/NEJM198706043162301"
+  - id: solvd
+    citation: "SOLVD Investigators; Yusuf S, et al. Effect of enalapril on survival in patients with reduced left ventricular ejection fractions and congestive heart failure. N Engl J Med. 1991;325(5):293-302."
+    pmid: "2057034"
+    doi: "10.1056/NEJM199108013250501"
+  - id: charm_alt
+    citation: "Granger CB, McMurray JJ, Yusuf S, et al. Effects of candesartan in patients with chronic heart failure and reduced left-ventricular systolic function intolerant to angiotensin-converting-enzyme inhibitors: the CHARM-Alternative trial. Lancet. 2003;362(9386):772-776."
+    pmid: "13678870"
+    doi: "10.1016/S0140-6736(03)14284-5"
+  - id: valheft
+    citation: "Cohn JN, Tognoni G; Valsartan Heart Failure Trial Investigators. A randomized trial of the angiotensin-receptor blocker valsartan in chronic heart failure. N Engl J Med. 2001;345(23):1667-1675."
+    pmid: "11759645"
+    doi: "10.1056/NEJMoa010713"
+  - id: cibis2
+    citation: "CIBIS-II Investigators and Committees. The Cardiac Insufficiency Bisoprolol Study II (CIBIS-II): a randomised trial. Lancet. 1999;353(9146):9-13."
+    pmid: "10023943"
+  - id: copernicus
+    citation: "Packer M, Coats AJ, Fowler MB, et al. Effect of carvedilol on survival in severe chronic heart failure. N Engl J Med. 2001;344(22):1651-1658."
+    pmid: "11386263"
+    doi: "10.1056/NEJM200105313442201"
+  - id: merit
+    citation: "MERIT-HF Study Group. Effect of metoprolol CR/XL in chronic heart failure: Metoprolol CR/XL Randomised Intervention Trial in Congestive Heart Failure (MERIT-HF). Lancet. 1999;353(9169):2001-2007."
+    pmid: "10376614"
+  - id: rales
+    citation: "Pitt B, Zannad F, Remme WJ, et al. The effect of spironolactone on morbidity and mortality in patients with severe heart failure. Randomized Aldactone Evaluation Study Investigators. N Engl J Med. 1999;341(10):709-717."
+    pmid: "10471456"
+    doi: "10.1056/NEJM199909023411001"
+  - id: emphasis
+    citation: "Zannad F, McMurray JJ, Krum H, et al. Eplerenone in patients with systolic heart failure and mild symptoms. N Engl J Med. 2011;364(1):11-21."
+    pmid: "21073363"
+    doi: "10.1056/NEJMoa1009492"
+  - id: dapahf
+    citation: "McMurray JJV, Solomon SD, Inzucchi SE, et al. Dapagliflozin in patients with heart failure and reduced ejection fraction. N Engl J Med. 2019;381(21):1995-2008."
+    pmid: "31535829"
+    doi: "10.1056/NEJMoa1911303"
+  - id: emperor
+    citation: "Packer M, Anker SD, Butler J, et al. Cardiovascular and renal outcomes with empagliflozin in heart failure. N Engl J Med. 2020;383(15):1413-1424."
+    pmid: "32865377"
+    doi: "10.1056/NEJMoa2022190"
+  - id: entresto
+    citation: "Entresto (sacubitril and valsartan) prescribing information. Novartis Pharmaceuticals Corporation. DailyMed, US National Library of Medicine. Accessed October 29, 2026."
+    url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=000dc81d-ab91-450c-8eae-8eb74e72296f"
+  - id: vasotec
+    citation: "Vasotec (enalapril maleate) prescribing information. Bausch Health US. DailyMed, US National Library of Medicine. Accessed October 29, 2026."
+    url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=39631f1f-5d19-43c1-b504-bf56d991ed97"
+  - id: zestril
+    citation: "Zestril (lisinopril) prescribing information. DailyMed, US National Library of Medicine. Accessed October 29, 2026."
+    url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=838c2d78-d2d8-4981-9ec9-e50ef9e1a5d8"
+  - id: atacand
+    citation: "Atacand (candesartan cilexetil) prescribing information. ANI Pharmaceuticals. DailyMed, US National Library of Medicine. Accessed October 29, 2026."
+    url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=94a59260-d2b6-464a-b5b9-bbc599e57e10"
+  - id: diovan
+    citation: "Diovan (valsartan) prescribing information. Novartis Pharmaceuticals Corporation. DailyMed, US National Library of Medicine. Accessed October 29, 2026."
+    url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5ddba454-f3e6-43c2-a7a6-58365d297213"
+  - id: coreg
+    citation: "Coreg (carvedilol) prescribing information. DailyMed, US National Library of Medicine. Accessed October 29, 2026."
+    url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=07c619c6-4a0c-445e-94fa-664a54f68a39"
+  - id: toprol
+    citation: "Toprol-XL (metoprolol succinate) prescribing information. DailyMed, US National Library of Medicine. Accessed October 29, 2026."
+    url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=496ddfaa-7c9c-4888-b747-a210249b367a"
+  - id: aldactone
+    citation: "Aldactone (spironolactone) prescribing information. Pfizer. DailyMed, US National Library of Medicine. Accessed October 29, 2026."
+    url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0fed2822-3a03-4b64-9857-c682fcd462bc"
+  - id: inspra
+    citation: "Inspra (eplerenone) prescribing information. DailyMed, US National Library of Medicine. Accessed October 29, 2026."
+    url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1a52bedc-8e2c-4116-a296-a87770676b4a"
+  - id: farxiga
+    citation: "Farxiga (dapagliflozin) prescribing information. AstraZeneca. DailyMed, US National Library of Medicine. Accessed October 29, 2026."
+    url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=72ad22ae-efe6-4cd6-a302-98aaee423d69"
+  - id: jardiance
+    citation: "Jardiance (empagliflozin) prescribing information. Boehringer Ingelheim. DailyMed, US National Library of Medicine. Accessed October 29, 2026."
+    url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=faf3dd6a-9cd0-39c2-0d2e-232cb3f67565"
